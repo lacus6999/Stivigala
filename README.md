@@ -1,0 +1,2 @@
+# Stivigala
+Rendszerfejlesztés projekt
