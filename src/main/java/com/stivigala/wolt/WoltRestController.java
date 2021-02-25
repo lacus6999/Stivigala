@@ -15,7 +15,7 @@ public class WoltRestController
     }
 
     @GetMapping("/allStorage")
-    public Storage getAllStorage() {
-        return storageRepo.findAll().iterator().next();
+    public String getAllStorage() {
+        return storageRepo.findAll().iterator().next().getName();
     }
 }
