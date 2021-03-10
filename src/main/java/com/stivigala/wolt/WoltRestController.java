@@ -1,21 +1,19 @@
 package com.stivigala.wolt;
 
-import com.stivigala.wolt.dbo.Storage;
-import com.stivigala.wolt.dbo.StorageRepo;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class WoltRestController
-{
-    private final StorageRepo storageRepo;
+public class WoltRestController {
 
-    public WoltRestController(StorageRepo storageRepo) {
-        this.storageRepo = storageRepo;
+    @GetMapping("/admin")
+    public String adminPage() {
+        return "<p>This is an admin site.</p>";
     }
 
-    @GetMapping("/allStorage")
-    public String getAllStorage() {
-        return storageRepo.findAll().iterator().next().getName();
+    @GetMapping("/user")
+    public String userPage() {
+        return "<p>This is a user site.</p>";
     }
+
 }
