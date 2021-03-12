@@ -10,7 +10,14 @@ import javax.persistence.*;
 public class Address {
 
 
-    
+
+
+
+
+
+
+
+
     @Id
     @GeneratedValue
     private Integer id;
