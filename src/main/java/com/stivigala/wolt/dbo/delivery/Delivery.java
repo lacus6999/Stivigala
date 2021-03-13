@@ -1,4 +1,4 @@
-package com.stivigala.wolt.dbo.order;
+package com.stivigala.wolt.dbo.delivery;
 
 import com.stivigala.wolt.dbo.meal.Meal;
 import com.stivigala.wolt.dbo.restaurant.Restaurant;
@@ -20,7 +20,7 @@ public class Delivery {
 
     @OneToOne
     @JoinColumn(name="user_name", referencedColumnName = "userName")
-    private Users users;
+    private Users user;
 
     @OneToMany(mappedBy = "delivery")
     private List<Meal> meals;

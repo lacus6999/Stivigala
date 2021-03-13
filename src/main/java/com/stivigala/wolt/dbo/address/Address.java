@@ -9,15 +9,6 @@ import javax.persistence.*;
 @Entity
 public class Address {
 
-
-
-
-
-
-
-
-
-
     @Id
     @GeneratedValue
     private Integer id;

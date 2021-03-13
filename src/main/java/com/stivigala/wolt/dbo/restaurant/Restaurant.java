@@ -2,7 +2,7 @@ package com.stivigala.wolt.dbo.restaurant;
 
 import com.stivigala.wolt.dbo.address.Address;
 import com.stivigala.wolt.dbo.meal.Meal;
-import com.stivigala.wolt.dbo.order.Delivery;
+import com.stivigala.wolt.dbo.delivery.Delivery;
 import lombok.Data;
 
 import javax.persistence.*;

@@ -50,7 +50,6 @@
             <artifactId>spring-boot-starter-thymeleaf</artifactId>
         </dependency>
 
-
         <!--LOMBOK-->
         <dependency>
             <groupId>org.projectlombok</groupId>

@@ -24,10 +24,10 @@ public class StivigalaApplication implements CommandLineRunner {
     public void run(String... strings) {
 
         jdbcTemplate.execute(
-                "create table if not exists authorities (" +
+                "create table if not exists authority (" +
                         "user_name varchar(50) not null," +
                         "authority varchar(50) not null," +
-                        "constraint fk_authorities_users foreign key(user_name) references users (userName)" +
+                        "constraint fk_authorities_users foreign key(user_name) references users (user_name)" +
                         ");"
         );
 

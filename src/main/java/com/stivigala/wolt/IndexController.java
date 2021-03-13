@@ -1,50 +1,45 @@
 package com.stivigala.wolt;
 
-import com.stivigala.wolt.dbo.user.UserRepository;
-import com.stivigala.wolt.dbo.user.Users;
-import org.springframework.security.crypto.password.PasswordEncoder;
+import com.stivigala.wolt.dbo.address.Address;
+import com.stivigala.wolt.dbo.authority.AuthorityType;
+import com.stivigala.wolt.dbo.user.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RequestMethod;
+
+import javax.servlet.http.HttpServletRequest;
+import java.util.Collections;
 
 @Controller
 public class IndexController {
 
-    private final UserRepository userRepository;
+    private final UserService userService;
 
-    private final PasswordEncoder passwordEncoder;
-
-    public IndexController(UserRepository userRepository, PasswordEncoder passwordEncoder) {
-        this.userRepository = userRepository;
-        this.passwordEncoder = passwordEncoder;
+    public IndexController(UserService userService) {
+        this.userService = userService;
     }
 
-    @RequestMapping
+    @RequestMapping(value = "/", method = RequestMethod.GET)
     public String indexPage() {
-        return "webapp/index";
+        return "index";
     }
 
-    @RequestMapping("/registration")
+    @RequestMapping(value = "/registration", method = RequestMethod.GET)
     public String registrationPage() {
-        return "webapp/register";
+        return "registerPage";
     }
 
-
-
-
-
-    
-    @ResponseBody
     @PostMapping("/register")
-    public String registerUser(Users user) {
+    public String registerUser(HttpServletRequest request) {
+        userService.register(
+                request.getParameter("userName"),
+                request.getParameter("password"),
+                true,
+                Collections.singletonList(new Address()),
+                AuthorityType.valueOf(request.getParameter("authority").toUpperCase())
+        );
 
-        user.setUserName(user.getUserName());
-        user.setEnabled(true);
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
-
-        userRepository.save(user);
-        System.out.println("kascsacsadsasdsadadsa");
-        return "<p>Thanks :)</p>";
+        return "index";
     }
 }

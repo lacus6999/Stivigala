@@ -1,6 +1,6 @@
 package com.stivigala.wolt.dbo.meal;
 
-import com.stivigala.wolt.dbo.order.Delivery;
+import com.stivigala.wolt.dbo.delivery.Delivery;
 import com.stivigala.wolt.dbo.restaurant.Restaurant;
 import lombok.Data;
 

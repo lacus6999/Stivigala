@@ -1,6 +1,5 @@
 package com.stivigala.wolt.security;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -14,8 +13,11 @@ import javax.sql.DataSource;
 @EnableWebSecurity
 public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
 
-    @Autowired
-    private DataSource dataSource;
+    private final DataSource dataSource;
+
+    public SecurityConfigurer(DataSource dataSource) {
+        this.dataSource = dataSource;
+    }
 
     @Override
     public void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -28,7 +30,7 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
                 )
                 .authoritiesByUsernameQuery(
                         "SELECT user_name, authority\n"
-                                + "FROM authorities\n"
+                                + "FROM authority\n"
                                 + "WHERE user_name = ?"
                 );
     }
@@ -36,12 +38,18 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                //  .antMatchers("/admin").hasAnyAuthority("ADMIN")
-                //  .antMatchers("/user").hasAnyAuthority("ADMIN", "USER")
-                // .antMatchers("/registration").permitAll()
-                // .antMatchers("/register").permitAll()
+                .antMatchers("/customer").hasAnyAuthority("ADMIN", "MANAGER", "CUSTOMER")
+                .antMatchers("/manager").hasAnyAuthority("ADMIN", "MANAGER")
+                .antMatchers("/admin").hasAnyAuthority("ADMIN")
+                .antMatchers("/registration").permitAll()
                 .antMatchers("/**").permitAll()
+
+                //TODO ne felejtsük el átírni bemutatáskor
+                .antMatchers("/h2-console/**").permitAll()
                 .and().formLogin();
+
+        http.csrf().disable();
+        http.headers().frameOptions().disable();
     }
 
     @Bean
