@@ -1,4 +1,4 @@
-package com.stivigala.wolt;
+package com.stivigala.wolt.rest;
 
 import org.springframework.web.bind.annotation.*;
 

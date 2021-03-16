@@ -46,7 +46,8 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
 
                 //TODO ne felejtsük el átírni bemutatáskor
                 .antMatchers("/h2-console/**").permitAll()
-                .and().formLogin();
+                .and()
+                .formLogin().loginPage("/login");
 
         http.csrf().disable();
         http.headers().frameOptions().disable();
