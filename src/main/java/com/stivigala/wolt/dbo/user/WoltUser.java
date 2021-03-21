@@ -13,7 +13,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class Users {
+public class WoltUser {
 
     @Id
     private String userName;
@@ -24,7 +24,7 @@ public class Users {
     @NotNull
     private Boolean enabled;
 
-    @OneToMany(mappedBy = "users")
+    @OneToMany(mappedBy = "woltUser")
     private List<Address> addresses;
 
 }

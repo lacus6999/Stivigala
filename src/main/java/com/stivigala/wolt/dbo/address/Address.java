@@ -1,6 +1,6 @@
 package com.stivigala.wolt.dbo.address;
 
-import com.stivigala.wolt.dbo.user.Users;
+import com.stivigala.wolt.dbo.user.WoltUser;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -17,6 +17,6 @@ public class Address {
 
     @ManyToOne
     @JoinColumn(name = "userName", nullable = false)
-    private Users users;
+    private WoltUser woltUser;
 
 }

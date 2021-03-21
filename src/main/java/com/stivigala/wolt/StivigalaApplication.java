@@ -27,7 +27,7 @@ public class StivigalaApplication implements CommandLineRunner {
                 "create table if not exists authority (" +
                         "user_name varchar(50) not null," +
                         "authority varchar(50) not null," +
-                        "constraint fk_authorities_users foreign key(user_name) references users (user_name)" +
+                        "constraint fk_authorities_users foreign key(user_name) references wolt_user (user_name)" +
                         ");"
         );
 

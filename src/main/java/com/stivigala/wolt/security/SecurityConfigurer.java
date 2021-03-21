@@ -25,7 +25,7 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
                 .dataSource(dataSource)
                 .usersByUsernameQuery(
                         "SELECT user_name, password, enabled\n"
-                                + "FROM users\n "
+                                + "FROM wolt_user\n "
                                 + "WHERE user_name = ?"
                 )
                 .authoritiesByUsernameQuery(

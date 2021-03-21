@@ -9,22 +9,22 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class UserService {
+public class WoltUserService {
 
-    private final UserRepository userRepository;
+    private final WoltUserRepository woltUserRepository;
 
     private final AuthorityService authorityService;
 
     private final PasswordEncoder passwordEncoder;
 
-    public UserService(AuthorityService authorityService, UserRepository userRepository, PasswordEncoder passwordEncoder) {
+    public WoltUserService(AuthorityService authorityService, WoltUserRepository woltUserRepository, PasswordEncoder passwordEncoder) {
         this.authorityService = authorityService;
-        this.userRepository = userRepository;
+        this.woltUserRepository = woltUserRepository;
         this.passwordEncoder = passwordEncoder;
     }
 
     public void register(String userName, String password, Boolean enabled, List<Address> addresses, AuthorityType authority) {
-        userRepository.save(new Users(userName, passwordEncoder.encode(password), enabled, addresses));
+        woltUserRepository.save(new WoltUser(userName, passwordEncoder.encode(password), enabled, addresses));
         authorityService.addAuthority(userName, authority);
     }
 

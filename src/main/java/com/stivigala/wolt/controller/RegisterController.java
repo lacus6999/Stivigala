@@ -2,7 +2,7 @@ package com.stivigala.wolt.controller;
 
 import com.stivigala.wolt.dbo.address.Address;
 import com.stivigala.wolt.dbo.authority.AuthorityType;
-import com.stivigala.wolt.dbo.user.UserService;
+import com.stivigala.wolt.dbo.user.WoltUserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,10 +13,10 @@ import java.util.Collections;
 @Controller
 public class RegisterController {
 
-    private final UserService userService;
+    private final WoltUserService woltUserService;
 
-    public RegisterController(UserService userService) {
-        this.userService = userService;
+    public RegisterController(WoltUserService woltUserService) {
+        this.woltUserService = woltUserService;
     }
 
     @GetMapping(value = "/registration")
@@ -26,7 +26,7 @@ public class RegisterController {
 
     @PostMapping("/register")
     public String registerUser(HttpServletRequest request) {
-        userService.register(
+        woltUserService.register(
                 request.getParameter("userName"),
                 request.getParameter("password"),
                 true,

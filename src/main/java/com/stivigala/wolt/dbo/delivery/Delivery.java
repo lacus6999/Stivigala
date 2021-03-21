@@ -2,7 +2,7 @@ package com.stivigala.wolt.dbo.delivery;
 
 import com.stivigala.wolt.dbo.meal.Meal;
 import com.stivigala.wolt.dbo.restaurant.Restaurant;
-import com.stivigala.wolt.dbo.user.Users;
+import com.stivigala.wolt.dbo.user.WoltUser;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -20,7 +20,7 @@ public class Delivery {
 
     @OneToOne
     @JoinColumn(name="user_name", referencedColumnName = "userName")
-    private Users user;
+    private WoltUser user;
 
     @OneToMany(mappedBy = "delivery")
     private List<Meal> meals;
