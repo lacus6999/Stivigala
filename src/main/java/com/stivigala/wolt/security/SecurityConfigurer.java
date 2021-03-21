@@ -24,14 +24,14 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
         auth.jdbcAuthentication()
                 .dataSource(dataSource)
                 .usersByUsernameQuery(
-                        "SELECT user_name, password, enabled\n"
+                        "SELECT username, password, enabled\n"
                                 + "FROM wolt_user\n "
-                                + "WHERE user_name = ?"
+                                + "WHERE username = ?"
                 )
                 .authoritiesByUsernameQuery(
-                        "SELECT user_name, authority\n"
+                        "SELECT username, authority\n"
                                 + "FROM authority\n"
-                                + "WHERE user_name = ?"
+                                + "WHERE username = ?"
                 );
     }
 

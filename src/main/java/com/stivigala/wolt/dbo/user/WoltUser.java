@@ -16,7 +16,7 @@ import java.util.List;
 public class WoltUser {
 
     @Id
-    private String userName;
+    private String username;
 
     @NotNull
     private String password;

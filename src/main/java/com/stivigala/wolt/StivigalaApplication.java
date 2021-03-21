@@ -25,9 +25,9 @@ public class StivigalaApplication implements CommandLineRunner {
 
         jdbcTemplate.execute(
                 "create table if not exists authority (" +
-                        "user_name varchar(50) not null," +
+                        "username varchar(50) not null," +
                         "authority varchar(50) not null," +
-                        "constraint fk_authorities_users foreign key(user_name) references wolt_user (user_name)" +
+                        "constraint fk_authorities_users foreign key(username) references wolt_user (username)" +
                         ");"
         );
 

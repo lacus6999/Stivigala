@@ -5,26 +5,9 @@
     <title>User list</title>
 </head>
 <body>
-
-<table>
-    <tr>
-        <th>NAME</th>
-        <th>PASSWORD</th>
-    </tr>
-    <tr th:each="user : ${userList}">
-        <td th:text="${user.getUserName()}">
-            <a th:href="'/woltuser/' + ${user.getUserName()}">
-                <div style="height:100%;width:100%">
-                </div>
-            </a>
-        </td>
-        <td th:text="${user.getPassword()}">
-        </td>
-    </tr>
-</table>
-
+<div>Users:</div>
 <div th:each="user : ${userList}">
-    <a th:href="'/woltuser/' + ${user.getUserName()}"><div th:text="${user.getUserName()}"></div></a>
+    <a th:href="'/woltuser/' + ${user.getUsername()}"><div th:text="${user.getUsername()}"></div></a>
 </div>
 
 </body>
