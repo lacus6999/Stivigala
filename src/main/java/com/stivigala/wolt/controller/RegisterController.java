@@ -34,6 +34,6 @@ public class RegisterController {
                 AuthorityType.valueOf(request.getParameter("authority").toUpperCase())
         );
 
-        return "index";
+        return "oldIndex";
     }
 }
