@@ -4,6 +4,7 @@ public enum AuthorityType {
 
     ADMIN,
     CUSTOMER,
-    MANAGER;
+    MANAGER,
+    COURIER
 
 }

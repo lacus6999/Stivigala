@@ -1,5 +1,6 @@
 package com.stivigala.wolt.security;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -14,9 +15,11 @@ import javax.sql.DataSource;
 public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
 
     private final DataSource dataSource;
+    private final WoltAuthSuccessHandler successHandler;
 
-    public SecurityConfigurer(DataSource dataSource) {
+    public SecurityConfigurer(DataSource dataSource, WoltAuthSuccessHandler successHandler) {
         this.dataSource = dataSource;
+        this.successHandler = successHandler;
     }
 
     @Override
@@ -47,7 +50,8 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
                 //TODO ne felejtsük el átírni bemutatáskor
                 .antMatchers("/h2-console/**").permitAll()
                 .and()
-                .formLogin().loginPage("/login");
+                .formLogin().loginPage("/login")
+                .successHandler(successHandler);
 
         http.csrf().disable();
         http.headers().frameOptions().disable();

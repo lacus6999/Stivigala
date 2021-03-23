@@ -1,6 +1,7 @@
 package com.stivigala.wolt.dbo.user;
 
 import com.stivigala.wolt.dbo.address.Address;
+import com.stivigala.wolt.dbo.authority.Authority;
 import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
