@@ -17,7 +17,7 @@ public class IndexController {
 
     @GetMapping(value = "/")
     public String indexPage() {
-        return "oldIndex";
+        return "index";
     }
 
     @GetMapping(value = "/woltuser/{username}")
