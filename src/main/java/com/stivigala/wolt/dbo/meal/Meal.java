@@ -25,4 +25,8 @@ public class Meal {
     @JoinColumn(name = "delivery_id", nullable = false)
     private Delivery delivery;
 
+    private String menu;
+
+    private String food;
+
 }

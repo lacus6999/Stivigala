@@ -2,6 +2,7 @@ package com.stivigala.wolt.dbo.user;
 
 import com.stivigala.wolt.dbo.address.Address;
 import com.stivigala.wolt.dbo.authority.Authority;
+import com.stivigala.wolt.dbo.restaurant.Restaurant;
 import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -22,8 +23,13 @@ public class WoltUser {
     @NotNull
     private String password;
 
+    private String fullName;
+
     @NotNull
     private Boolean enabled;
+
+    @OneToMany(mappedBy = "owner")
+    private List<Restaurant> restaurants;
 
     @OneToMany(mappedBy = "woltUser")
     private List<Address> addresses;

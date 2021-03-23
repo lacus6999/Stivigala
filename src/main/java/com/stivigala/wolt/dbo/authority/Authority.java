@@ -10,7 +10,6 @@ import javax.persistence.*;
 @NoArgsConstructor
 public class Authority {
 
-    //TODO FOREIGN KEY TO WOLTUSER USERNAME
     @Id
     private String username;
 

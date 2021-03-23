@@ -3,13 +3,18 @@ package com.stivigala.wolt.dbo.restaurant;
 import com.stivigala.wolt.dbo.address.Address;
 import com.stivigala.wolt.dbo.meal.Meal;
 import com.stivigala.wolt.dbo.delivery.Delivery;
+import com.stivigala.wolt.dbo.user.WoltUser;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.List;
 
 @Data
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
 public class Restaurant {
 
     @Id
@@ -27,5 +32,9 @@ public class Restaurant {
     @OneToOne
     @JoinColumn(name = "address_id", referencedColumnName = "id")
     private Address address;
+
+    @ManyToOne
+    @JoinColumn(name = "userName")
+    private WoltUser owner;
 
 }

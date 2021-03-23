@@ -6,6 +6,7 @@ import com.stivigala.wolt.dbo.user.WoltUser;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.List;
 
 @Data
@@ -28,5 +29,8 @@ public class Delivery {
     @ManyToOne
     @JoinColumn(name="restaurant_id", nullable=false)
     private Restaurant restaurant;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date createdAt;
 
 }
