@@ -20,8 +20,8 @@ public class Delivery {
     private Boolean isDelivered;
 
     @OneToOne
-    @JoinColumn(name="user_name", referencedColumnName = "userName")
-    private WoltUser user;
+    @JoinColumn(name="orderedBy", referencedColumnName = "username")
+    private WoltUser orderedBy;
 
     @OneToMany(mappedBy = "delivery")
     private List<Meal> meals;
@@ -32,5 +32,9 @@ public class Delivery {
 
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdAt;
+
+    @OneToOne
+    @JoinColumn(name="courier", referencedColumnName = "username")
+    private WoltUser courier;
 
 }

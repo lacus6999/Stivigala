@@ -34,7 +34,7 @@ public class Restaurant {
     private Address address;
 
     @ManyToOne
-    @JoinColumn(name = "userName")
+    @JoinColumn(name = "owner")
     private WoltUser owner;
 
 }

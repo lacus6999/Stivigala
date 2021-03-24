@@ -27,7 +27,7 @@ public class RegisterController {
     @PostMapping("/register")
     public String registerUser(HttpServletRequest request) {
         woltUserService.register(
-                request.getParameter("userName"),
+                request.getParameter("username"),
                 request.getParameter("password"),
                 true,
                 Collections.singletonList(new Address()),

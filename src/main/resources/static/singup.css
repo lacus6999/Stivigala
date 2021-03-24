@@ -135,7 +135,7 @@ body {
     margin-right: 30px;
     margin-top: 15px;
 }
-#nev-mezo, #jelszo-mezo, #jelszo-mezo-megerosites, #emailcim-mezo, #cim-mezo, #telszam-mezo {
+#username, #password, #jelszo-mezo-megerosites, #emailcim-mezo, #cim-mezo, #telszam-mezo {
     width: 100%;
 }
 

@@ -129,12 +129,12 @@ body {
     margin-top: 10px;
     color: black;
 }
-#username, #password {
+#usernameDiv, #passwordDiv {
     margin-left: 30px;
     margin-right: 30px;
     margin-top: 15px;
 }
-#nev-mezo, #jelszo-mezo {
+#username, #password {
     width: 100%;
 }
 

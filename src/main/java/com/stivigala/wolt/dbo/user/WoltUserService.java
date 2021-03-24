@@ -29,9 +29,9 @@ public class WoltUserService {
         this.authorityRepository = authorityRepository;
     }
 
-    public void register(String userName, String password, Boolean enabled, List<Address> addresses, AuthorityType authority) {
+    public void register(String username, String password, Boolean enabled, List<Address> addresses, AuthorityType authority) {
         String fullName = "";
-        WoltUser woltUser = new WoltUser(userName, passwordEncoder.encode(password),fullName, enabled, new ArrayList<>(), addresses);
+        WoltUser woltUser = new WoltUser(username, passwordEncoder.encode(password),fullName, enabled, new ArrayList<>(), addresses);
         woltUserRepository.save(woltUser);
         authorityRepository.save(new Authority(woltUser.getUsername(), authority));
     }
