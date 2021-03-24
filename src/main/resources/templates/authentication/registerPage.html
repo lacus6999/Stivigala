@@ -52,7 +52,7 @@
 
 
     <!--felh név, emailcim, cim, telefonszám, jelszó, megerősítés-->
-    <form name="login">
+    <form name="login" action="#" th:action="@{/register}"  method="post">
 
         <div class="row">
 
@@ -61,31 +61,25 @@
                 <div id="nev-div" class="font-quicksand">
                     <img src="icon-member.svg" alt="" class="icons">
 
-                    <!-- TODO átnevezés -->
-
-                    <label for="nev" id="nev_js">Username:</label>
+                    <label for="username" id="nev_js">Username:</label>
                     <br>
-                    <input type="text" name="nev" id="nev-mezo">
+                    <input type="text" name="username" id="username">
                 </div>
 
                 <div id="emailcim-div" class="font-quicksand">
                     <img src="icon-email.svg" alt="" class="icons">
 
-                    <!-- TODO átnevezés -->
-
                     <label for="email" id="email_js">E-mail:</label>
                     <br>
-                    <input type="text" name="email" id="emailcim-mezo">
+                    <input type="text" name="email" id="email">
                 </div>
 
                 <div id="cim-div" class="font-quicksand">
                     <img src="icon-smartphone-alt.svg" alt="" class="icons">
 
-                    <!-- TODO átnevezés -->
-
-                    <label for="cim" id="tel_js">Telephone number:</label>
+                    <label for="phone" id="tel_js">Telephone number:</label>
                     <br>
-                    <input type="text" name="cim" id="cim-mezo">
+                    <input type="text" name="phone" id="phone">
                 </div>
 
                 <!--<button type="button" class="btn font-weight-bold changebutton font-quicksand" onclick="users()">For Users</button>-->
@@ -98,53 +92,44 @@
                 <div id="telszam-div" class="font-quicksand">
                     <img src="icon-location.svg" alt="" class="icons">
 
-                    <!-- TODO átnevezés -->
-
-                    <label for="telszam" id="del_js">Delivery address:</label>
+                    <label for="address" id="del_js">Delivery address:</label>
                     <br>
-                    <input type="text" name="telszam" id="telszam-mezo">
+                    <input type="text" name="address" id="address">
                 </div>
 
                 <div id="jelszo-div" class="font-quicksand">
                     <img src="icon-key.svg" alt="" class="icons">
 
-                    <!-- TODO átnevezés -->
-
-                    <label for="jelszo" id="pass_js">Password:</label>
+                    <label for="password" id="pass_js">Password:</label>
                     <br>
-                    <input type="password" name="jelszo" id="jelszo-mezo">
+                    <input type="password" name="password" id="password">
                 </div>
 
                 <div id="jelszo-megerosites-div" class="font-quicksand">
                     <img src="icon-warning.svg" alt="" class="icons">
 
-                    <!-- TODO átnevezés -->
-                    
-                    <label for="jelszo-megerosites" id="passconf_js">Password confirmation:</label>
+                    <label for="password_confirm" id="passconf_js">Password confirmation:</label>
                     <br>
-                    <input type="password" name="jelszo-megerosites" id="jelszo-mezo-megerosites">
+                    <input type="password" name="password_confirm" id="password_confirm">
                 </div>
 
             </div>
 
-
         </div><!--sor vége-->
-
-        <!-- TODO  radiobuttonok neve  -->
-
         <div class="row">
-            <div class="col-3 choose-radios">
-                <input type="radio" name="choose" id="manager" value="manager">
-                <label for="manager" class="font-quicksand">Manager</label>
-            </div>
 
             <div class="col-3 choose-radios">
-                <input type="radio" name="choose" id="customer" value="customer">
+                <input type="radio" name="authority" id="customer" value="customer" checked>
                 <label for="customer" class="font-quicksand">Customer</label>
             </div>
 
             <div class="col-3 choose-radios">
-                <input type="radio" name="choose" id="courier" value="courier">
+                <input type="radio" name="authority" id="manager" value="manager">
+                <label for="manager" class="font-quicksand">Manager</label>
+            </div>
+
+            <div class="col-3 choose-radios">
+                <input type="radio" name="authority" id="courier" value="courier">
                 <label for="courier" class="font-quicksand">Courier</label>
             </div>
         </div>
@@ -152,26 +137,15 @@
         <img src="welcome-image.png" alt="" id="welcome-image">
 
 
-        <button type="button" class="btn font-weight-bold signin-button font-quicksand">Sign up</button>
-
+        <button type="submit" class="btn font-weight-bold signin-button font-quicksand">Sign up</button>
 
     </form>
 </div>
 
-<!--change js file-->
 <script src="signup.js"></script>
 
-<!-- Optional JavaScript; choose one of the two! -->
-
-<!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
 
-<!-- Option 2: Separate Popper and Bootstrap JS -->
-<!--
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>
--->
 </body>
 </html>
