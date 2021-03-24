@@ -17,8 +17,12 @@ public class WoltAuthSuccessHandler implements AuthenticationSuccessHandler {
     public void onAuthenticationSuccess(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Authentication authentication) throws IOException, ServletException {
         for (GrantedAuthority authority : authentication.getAuthorities()) {
             if (authority.getAuthority().equals(AuthorityType.MANAGER.toString())) {
-                httpServletResponse.sendRedirect("/restaurant/mainManagerSite");
-            }else
+                httpServletResponse.sendRedirect("/manager/mainManagerSite");
+            } else if (authority.getAuthority().equals(AuthorityType.CUSTOMER.toString())) {
+                httpServletResponse.sendRedirect("/customer/mainCustomerSite");
+            } else if (authority.getAuthority().equals(AuthorityType.COURIER.toString())) {
+                httpServletResponse.sendRedirect("/courier/mainCourierSite");
+            } else
                 httpServletResponse.sendRedirect("/");
         }
     }

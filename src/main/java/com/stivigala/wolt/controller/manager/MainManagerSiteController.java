@@ -28,7 +28,7 @@ public class MainManagerSiteController {
         this.addressRepository = addressRepository;
     }
 
-    @GetMapping("/restaurant/mainManagerSite")
+    @GetMapping("/manager/mainManagerSite")
     public String listUsers(Model model) throws Exception {
         model.addAttribute("restaurantList", restaurantRepository.findAllByOwner(woltUserService.getCurrentAuthenticatedUser()));
         return "manager/mainManagerSite";
@@ -53,7 +53,7 @@ public class MainManagerSiteController {
                 woltUserService.getCurrentAuthenticatedUser()
         ));
 
-        return "redirect:/restaurant/mainManagerSite";
+        return "redirect:/manager/mainManagerSite";
     }
 
 }
