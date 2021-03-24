@@ -135,7 +135,7 @@ body {
     margin-right: 30px;
     margin-top: 15px;
 }
-#username, #password, #jelszo-mezo-megerosites, #emailcim-mezo, #cim-mezo, #telszam-mezo {
+#nev-mezo, #jelszo-mezo, #jelszo-mezo-megerosites, #emailcim-mezo, #cim-mezo, #telszam-mezo {
     width: 100%;
 }
 
@@ -187,7 +187,7 @@ body {
     width: 100%;
 }
 
-.changebutton {
-    display: block;
-    margin: 0 auto 0 auto;
+.choose-radios {
+    margin: 15px auto 0 auto;
+    text-align: center;
 }
