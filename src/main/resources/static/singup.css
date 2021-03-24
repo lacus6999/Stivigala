@@ -160,21 +160,21 @@ body {
     width:20px;
 }
 
-.login-button {
+.signin-button {
     position: absolute;
     text-align: center;
-    top: 90%;
+    top: 95%;
     left: 50%;
     transform: translate(-50%,-50%);
     color: black;
     transition: .5s ease;
     font-size:150%;
 }
-.login-button:hover {
+.signin-button:hover {
     letter-spacing: 0.05rem;
 }
 
-.login-button::after {
+.signin-button::after {
     content: '';
     display: block;
     width: 0;
@@ -183,6 +183,11 @@ body {
     transition: width .5s;
     margin: 0 auto 0 auto;
 }
-.login-button:hover::after {
+.signin-button:hover::after {
     width: 100%;
+}
+
+.changebutton {
+    display: block;
+    margin: 0 auto 0 auto;
 }
