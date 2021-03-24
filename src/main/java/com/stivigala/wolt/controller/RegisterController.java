@@ -29,7 +29,9 @@ public class RegisterController {
         woltUserService.register(
                 request.getParameter("username"),
                 request.getParameter("password"),
+                request.getParameter("fullname"),
                 true,
+                request.getParameter("phone"),
                 Collections.singletonList(new Address()),
                 AuthorityType.valueOf(request.getParameter("authority").toUpperCase())
         );
