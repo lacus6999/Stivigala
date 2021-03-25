@@ -15,7 +15,6 @@ public class MainCustomerSiteController {
         this.restaurantRepository = restaurantRepository;
     }
 
-
     @GetMapping("/customer/mainCustomerSite")
     public String getMainCustomerSite(Model model) {
         model.addAttribute("restaurantList", restaurantRepository.findAll());

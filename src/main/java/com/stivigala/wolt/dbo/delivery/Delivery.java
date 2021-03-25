@@ -14,7 +14,7 @@ import java.util.List;
 public class Delivery {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     private Boolean isDelivered;
@@ -31,7 +31,7 @@ public class Delivery {
     private Restaurant restaurant;
 
     @Temporal(TemporalType.TIMESTAMP)
-    private Date createdAt;
+    private Date bookedAt;
 
     @OneToOne
     @JoinColumn(name="courier", referencedColumnName = "username")

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org" lang="hu">
+<head>
+    <title>Restaurant details</title>
+</head>
+<body>
+<div>Restaurant details</div>
+<div th:text="${restaurant.getName()} + ' Meals:'"></div>
+<div th:each="meal : ${restaurant.getMeals()}">
+    <a th:href="'/manager/meal/' + ${meal.getId()}">
+        <div th:text="${meal.getFood()}"></div>
+    </a>
+</div>
+<div th:text="${restaurant.getName()} + ' Delivery requests:'"></div>
+<div th:each="delivery : ${restaurant.getDeliveries()}">
+    <a th:href="'/manager/delivery/' + ${delivery.getId()}">
+        <div th:text="delivery.getCourier() ? null : (${delivery.getId()} + ' - NOT ASSIGNED' ?: ${delivery.getId()} + ' - ' + ${delivery.getCourier().getUsername()})"></div>
+    </a>
+</div>
+<form action="/manager/meal/addNewMealPage" method="post">
+    <input type="hidden" name="restaurantId" id="restaurantId" th:value="${restaurant.getId()}">
+    <input type="submit" value="Add new meal!">
+</form>
+<a href="/manager/mainManagerSite">Back</a>
+
+</body>
+
+</html> 

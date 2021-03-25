@@ -1,4 +1,4 @@
-package com.stivigala.wolt.controller;
+package com.stivigala.wolt.controller.authentication;
 
 import com.stivigala.wolt.dbo.address.Address;
 import com.stivigala.wolt.dbo.authority.AuthorityType;

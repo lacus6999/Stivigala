@@ -1,59 +1,76 @@
 package com.stivigala.wolt.controller.manager;
 
-import com.stivigala.wolt.dbo.address.Address;
-import com.stivigala.wolt.dbo.address.AddressRepository;
-import com.stivigala.wolt.dbo.restaurant.Restaurant;
-import com.stivigala.wolt.dbo.restaurant.RestaurantRepository;
 import com.stivigala.wolt.dbo.user.WoltUserService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.ArrayList;
 
 @Controller
 public class MainManagerSiteController {
 
-    private final RestaurantRepository restaurantRepository;
-    private final AddressRepository addressRepository;
 
-    private final WoltUserService woltUserService;
+    private final ManagerService managerService;
 
-    public MainManagerSiteController(RestaurantRepository restaurantRepository, WoltUserService woltUserService, AddressRepository addressRepository) {
-        this.restaurantRepository = restaurantRepository;
-        this.woltUserService = woltUserService;
-        this.addressRepository = addressRepository;
+    public MainManagerSiteController(ManagerService managerService) {
+        this.managerService = managerService;
     }
 
     @GetMapping("/manager/mainManagerSite")
-    public String listUsers(Model model) throws Exception {
-        model.addAttribute("restaurantList", restaurantRepository.findAllByOwner(woltUserService.getCurrentAuthenticatedUser()));
+    public String showMainManagerPage(Model model) throws Exception {
+        model.addAttribute("restaurants", managerService.findAllRestaurants());
         return "manager/mainManagerSite";
     }
 
-    @GetMapping("/restaurant/addNewSite")
-    public String addNewRestaurantPage() {
+    @GetMapping("/manager/addNewRestaurantPage")
+    public String showNewRestaurantPage() {
         return "manager/addNewRestaurantPage";
     }
 
-    @PostMapping("/restaurant/addNew")
+    @PostMapping("/manager/restaurant/addNew")
     public String addNewRestaurant(HttpServletRequest request) throws Exception {
-
-        Address address = new Address(null, request.getParameter("address"), null);
-        addressRepository.save(address);
-        restaurantRepository.save(new Restaurant(
-                null,
-                request.getParameter("name"),
-                new ArrayList<>(),
-                new ArrayList<>(),
-                address,
-                woltUserService.getCurrentAuthenticatedUser()
-        ));
+        managerService.addNewRestaurant(request);
 
         return "redirect:/manager/mainManagerSite";
     }
+
+    @GetMapping("/manager/restaurant/{id}")
+    public String showRestaurantDetailsPage(Model model, @PathVariable String id) {
+        model.addAttribute("restaurant", managerService.getRestaurantById(Integer.parseInt(id)));
+
+        return "/manager/restaurantDetailsPage";
+    }
+
+    @GetMapping("/manager/meal/{id}")
+    public String showMealDetailsPage(Model model, @PathVariable String id) {
+        model.addAttribute("meal", managerService.getMealById(Integer.parseInt(id)));
+
+        return "/manager/mealDetailsPage";
+    }
+
+    @GetMapping("/manager/delivery/{id}")
+    public String showDeliveryDetailsPage(Model model, @PathVariable String id) {
+        model.addAttribute("delivery", managerService.getDeliveryById(Integer.parseInt(id)));
+
+        return "/manager/deliveryDetailsPage";
+    }
+
+    @PostMapping("/manager/meal/addNewMealPage")
+    public String showNewMealPage(HttpServletRequest request, Model model) {
+        model.addAttribute("restaurantId", request.getParameter("restaurantId"));
+        return "/manager/addNewMealPage";
+    }
+
+    @PostMapping("/manager/meal/addNew")
+    public String addNewMeal(HttpServletRequest request) {
+        managerService.addNewMeal(request);
+        return "redirect:/manager/mainManagerSite";
+    }
+
+
+
 
 }

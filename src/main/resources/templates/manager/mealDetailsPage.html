@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org" lang="hu">
+<head>
+    <title>Meal details</title>
+</head>
+<body>
+<span th:#{bool} = true></span>
+<div>Meal details: </div>
+
+<!--TODO EDIT using fragments-->
+<div th:text="'Meal id: ' + ${meal.getId()}"></div>
+<div th:text="'Food: ' + ${meal.getFood()}"></div>
+<div th:text="'Menu: ' + ${meal.getMenu()}"></div>
+<div th:text="'Time: ' + ${meal.getTime()}"></div>
+<br>
+<a th:href="'/manager/restaurant/' + ${meal.getRestaurant().getId()}">Back</a>
+
+
+</body>
+
+</html> 

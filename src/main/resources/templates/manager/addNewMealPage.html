@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org" lang="hu">
+<head>
+    <title>New Restaurant</title>
+</head>
+<body>
+<form action="#" th:action="@{/manager/meal/addNew}"  method="post">
+    <label for="food">Food</label>
+    <input type="text"  id="food" name="food" placeholder="food">
+    <label for="menu">Menu</label>
+    <input type="text" id="menu" name="menu" placeholder="menu">
+    <label for="time">Time</label>
+    <input type="text" id="time" name="time" placeholder="time">
+    <input type="hidden" id="restaurantId" name="restaurantId" th:value="${restaurantId}">
+
+    <button type="submit" value="submit">AddNew</button>
+</form>
+
+</body>
+
+</html> 

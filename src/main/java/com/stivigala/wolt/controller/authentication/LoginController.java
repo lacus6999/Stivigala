@@ -1,4 +1,4 @@
-package com.stivigala.wolt.controller;
+package com.stivigala.wolt.controller.authentication;
 
 
 import com.stivigala.wolt.dbo.user.WoltUserRepository;

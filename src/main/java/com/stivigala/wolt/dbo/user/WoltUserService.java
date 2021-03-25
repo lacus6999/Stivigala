@@ -38,7 +38,7 @@ public class WoltUserService {
     public WoltUser getCurrentAuthenticatedUser() throws Exception {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (!(authentication instanceof AnonymousAuthenticationToken)) {
-            return woltUserRepository.findById(authentication.getName()).orElseThrow();
+            return woltUserRepository.findById(authentication.getName()).orElse(null);
         }
         else throw new Exception("No authenticated user!");
     }

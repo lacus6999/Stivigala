@@ -20,16 +20,4 @@ public class IndexController {
         return "index";
     }
 
-    @GetMapping(value = "/woltuser/{username}")
-    public String getUserData(@PathVariable String username, Model model) {
-
-        model.addAttribute("woltUser", woltUserRepository.findById(username));
-        return "woltUserData";
-    }
-
-    @GetMapping("/users/list")
-    public String listUsers(Model model) {
-        model.addAttribute("userList", woltUserRepository.findAll());
-        return "userList";
-    }
 }
