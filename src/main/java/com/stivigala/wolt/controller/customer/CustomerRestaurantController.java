@@ -3,28 +3,27 @@ package com.stivigala.wolt.controller.customer;
 import com.stivigala.wolt.dbo.delivery.Delivery;
 import com.stivigala.wolt.dbo.meal.Meal;
 import com.stivigala.wolt.dbo.restaurant.Restaurant;
-import com.stivigala.wolt.dbo.restaurant.RestaurantRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 @Controller
-public class MainCustomerSiteController {
+public class CustomerRestaurantController {
 
-    private final RestaurantRepository restaurantRepository;
+    private final CustomerService customerService;
 
-
-    public MainCustomerSiteController(RestaurantRepository restaurantRepository) {
-        this.restaurantRepository = restaurantRepository;
+    public CustomerRestaurantController(CustomerService customerService) {
+        this.customerService = customerService;
     }
 
-    @GetMapping("/customer/mainCustomerSite")
-    public String getMainCustomerSite(Model model) {
-        Restaurant restaurant = new Restaurant(
+    @GetMapping("/customer/restaurant/{id}")
+    public String showRestaurantDetailsPage(@PathVariable Integer id, Model model) {
+        model.addAttribute("restaurant", new Restaurant(
                 1,
                 "rest",
                 List.of(
@@ -34,9 +33,10 @@ public class MainCustomerSiteController {
                 new ArrayList<Delivery>(),
                 null,
                 null
-        );
-        model.addAttribute("restaurantList", Collections.singletonList(restaurant));
-        //model.addAttribute("restaurantList", restaurantRepository.findAll());
-        return "customer/mainCustomerSite";
+        ));//customerService.findRestaurantById(id));
+        model.addAttribute("bucket", new ArrayList<Meal>());
+
+        return "customer/restaurantDetailsPage";
     }
+
 }

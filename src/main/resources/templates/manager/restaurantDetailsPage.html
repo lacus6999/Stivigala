@@ -14,7 +14,7 @@
 <div th:text="${restaurant.getName()} + ' Delivery requests:'"></div>
 <div th:each="delivery : ${restaurant.getDeliveries()}">
     <a th:href="'/manager/delivery/' + ${delivery.getId()}">
-        <div th:text="delivery.getCourier() ? null : (${delivery.getId()} + ' - NOT ASSIGNED' ?: ${delivery.getId()} + ' - ' + ${delivery.getCourier().getUsername()})"></div>
+        <div th:text="${delivery.getCourier()} ? null : ((${delivery.getId()} + ' - NOT ASSIGNED') ?: (${delivery.getId()} + ' - ' + ${delivery.getCourier().getUsername()}))"></div>
     </a>
 </div>
 <form action="/manager/meal/addNewMealPage" method="post">

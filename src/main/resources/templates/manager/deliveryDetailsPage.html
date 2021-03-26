@@ -1,22 +1,46 @@
 <!DOCTYPE html>
 <html xmlns:th="https://www.thymeleaf.org" lang="hu">
 <head>
-    <title>Meal details</title>
+    <title>Delivery details</title>
 </head>
 <body>
 <span th:#{bool}=true></span>
 <div>Delivery details:</div>
+<form action="/manager/delivery/assignCourierToDelivery" method="post">
 
-<div th:text="'Delivery id: ' + ${delivery.getId()}"></div>
-<div th:text="'Ordered by: ' + ${delivery.getOrderedBy().getFullName()}"></div>
-<div th:text="'Courier name: ' + (${delivery.getCourier()} ? null : ('NOT ASSIGNED' ?: ${delivery.getCourier().getUsername()}))"></div>
-<div th:text="'Booked at: ' + ${delivery.getBookedAt()}"></div><br>
-<div style="font-weight: bold; font-size: larger" th:each="meal : ${delivery.getMeals()}">
-    <div th:text="' Menu: ' + ${meal.getMenu()}"></div>
-    <div th:text="' Food: ' + ${meal.getFood()}"></div>
-    <div th:text="' Time: ' + ${meal.getTime()}"></div>
-</div>
-<br>
+    <div th:text="'Delivery id: ' + ${delivery.getId()}"></div>
+    <div th:text="'Ordered by: ' + ${delivery.getOrderedBy().getFullName()}"></div>
+
+    <div th:switch="${delivery.getCourier()}">
+        <div th:case="null">
+            <label>
+                <select name="courierUserName" th:each="courier : ${couriers}">
+                    <option th:text="${courier.getUsername()}" th:value="${courier.getUsername()}"></option>
+                </select>
+            </label>
+        </div>
+
+        <div th:case="*" th:text="${delivery.getCourier().getFullName()}">ASDSADASDSADASDASDSAD NEM NULLL</div>
+    </div>
+
+    <input type="hidden" th:value="${delivery.getId()}" name="deliveryId">
+
+    <div th:text="'Booked at: ' + ${delivery.getBookedAt()}"></div>
+    <br>
+    <div style="font-weight: bold; font-size: larger" th:each="meal : ${delivery.getMeals()}">
+        <div th:text="' Menu: ' + ${meal.getMenu()}"></div>
+        <div th:text="' Food: ' + ${meal.getFood()}"></div>
+        <div th:text="' Time: ' + ${meal.getTime()}"></div>
+    </div>
+    <br>
+    <div th:switch="${delivery.getCourier()}">
+        <div th:case="null">
+            <button type="submit" value="Assign">Assign</button>
+        </div>
+        <div th:case="*">NO BUTTON FOR U
+        </div>
+    </div>
+</form>
 <a th:href="'/manager/restaurant/' + ${delivery.getRestaurant().getId()}">Back</a>
 
 
