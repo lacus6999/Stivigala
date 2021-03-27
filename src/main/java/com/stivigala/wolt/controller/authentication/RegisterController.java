@@ -6,6 +6,7 @@ import com.stivigala.wolt.dbo.user.WoltUserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Collections;
@@ -29,13 +30,13 @@ public class RegisterController {
         woltUserService.register(
                 request.getParameter("username"),
                 request.getParameter("password"),
+                request.getParameter("email"),
                 request.getParameter("fullname"),
-                true,
                 request.getParameter("phone"),
                 Collections.singletonList(new Address()),
                 AuthorityType.valueOf(request.getParameter("authority").toUpperCase())
         );
 
-        return "index";
+        return "authentication/confirmEmailPage";
     }
 }

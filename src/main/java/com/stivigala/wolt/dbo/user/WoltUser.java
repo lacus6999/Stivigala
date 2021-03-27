@@ -22,6 +22,9 @@ public class WoltUser {
     @NotNull
     private String password;
 
+    @NotNull
+    private String email;
+
     private String fullName;
 
     @NotNull
