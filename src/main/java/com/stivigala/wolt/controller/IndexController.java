@@ -1,23 +1,35 @@
 package com.stivigala.wolt.controller;
 
-import com.stivigala.wolt.dbo.user.WoltUserRepository;
+import com.stivigala.wolt.dbo.user.WoltUserService;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class IndexController {
 
-    private final WoltUserRepository woltUserRepository;
+    private final WoltUserService woltUserService;
 
-    public IndexController(WoltUserRepository woltUserRepository) {
-        this.woltUserRepository = woltUserRepository;
+    public IndexController(WoltUserService woltUserService) {
+        this.woltUserService = woltUserService;
     }
 
     @GetMapping(value = "/")
     public String indexPage() {
         return "index";
+    }
+
+    @GetMapping(value = "/confirmation")
+    @ResponseBody
+    public String confirmation(@RequestParam String token) {
+        try {
+            woltUserService.confirmUserViaToken(token);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return "Email confirmed!<br> <a href='/login'>Home</a>";
     }
 
 }
