@@ -3,13 +3,17 @@ package com.stivigala.wolt.dbo.delivery;
 import com.stivigala.wolt.dbo.meal.Meal;
 import com.stivigala.wolt.dbo.restaurant.Restaurant;
 import com.stivigala.wolt.dbo.user.WoltUser;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
 
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 public class Delivery {
 
@@ -37,4 +41,8 @@ public class Delivery {
     @JoinColumn(name="courier", referencedColumnName = "username")
     private WoltUser courier;
 
+    private Double price;
+
 }
+
+

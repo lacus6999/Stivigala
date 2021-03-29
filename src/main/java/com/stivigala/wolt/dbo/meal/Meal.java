@@ -32,4 +32,6 @@ public class Meal {
 
     private String food;
 
+    private Double price;
+
 }

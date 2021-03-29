@@ -23,18 +23,19 @@ public class CustomerRestaurantController {
 
     @GetMapping("/customer/restaurant/{id}")
     public String showRestaurantDetailsPage(@PathVariable Integer id, Model model) {
-        model.addAttribute("restaurant", new Restaurant(
-                1,
-                "rest",
-                List.of(
-                        new Meal(1, "asd", null, null, "asd", "asd"),
-                        new Meal(2, "asd2", null, null, "asd2", "asd2")
-                ),
-                new ArrayList<Delivery>(),
-                null,
-                null
-        ));//customerService.findRestaurantById(id));
-        model.addAttribute("bucket", new ArrayList<Meal>());
+//        model.addAttribute("restaurant", new Restaurant(
+//                1,
+//                "rest",
+//                List.of(
+//                        new Meal(1, "asd", null, null, "asd", "asd"),
+//                        new Meal(2, "asd2", null, null, "asd2", "asd2")
+//                ),
+//                new ArrayList<Delivery>(),
+//                null,
+//                null
+//        ));
+        model.addAttribute("restaurant", customerService.findRestaurantById(id));
+        model.addAttribute("mealList", customerService.getAllMealByRestaurantId(id));
 
         return "customer/restaurantDetailsPage";
     }
