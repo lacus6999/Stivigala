@@ -37,6 +37,6 @@ public class RegisterController {
                 AuthorityType.valueOf(request.getParameter("authority").toUpperCase())
         );
 
-        return "authentication/confirmEmailPage";
+        return "authentication/verify";
     }
 }

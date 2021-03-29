@@ -21,7 +21,7 @@ public class IndexController {
     }
 
     @GetMapping(value = "/confirmation")
-    @ResponseBody
+
     public String confirmation(@RequestParam String token) {
         try {
             woltUserService.confirmUserViaToken(token);
@@ -29,7 +29,7 @@ public class IndexController {
             e.printStackTrace();
         }
 
-        return "Email confirmed!<br> <a href='/login'>Home</a>";
+        return "authentication/verified";
     }
 
 }
