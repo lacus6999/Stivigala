@@ -90,7 +90,8 @@ public class ManagerService {
                 restaurantRepository.findById(Integer.parseInt(request.getParameter("restaurantId"))).orElse(null),
                 null,
                 request.getParameter("menu"),
-                request.getParameter("food")
+                request.getParameter("food"),
+                Double.parseDouble(request.getParameter("price"))
         ));
     }
 

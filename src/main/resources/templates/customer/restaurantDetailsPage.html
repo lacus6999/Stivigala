@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="https://www.thymeleaf.org" lang="hu">
+<html xmlns:th="https://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html" lang="hu">
 <head>
     <meta charset="UTF-8">
     <title>Restaurant Site</title>
@@ -7,18 +7,29 @@
 <body>
 
 <div th:text="${restaurant.getName()} + ' Meals:'"></div>
-<div th:each="meal : ${restaurant.getMeals()}">
-    <a href="#" th:action="${bucket.add(meal)}">
-        <div th:text="${meal.getFood()}"></div>
-    </a>
-</div>
-<div th:each="meal : ${bucket}">
-    <div th:text="${meal.getFood()}"></div>
-</div>
+
+<form action="#"  th:action="@{/customer/order}"  method="post">
+    <div th:each="meal : ${mealList}">
+        <a th:href="'/customer/restaurant/meal/' + ${meal.getId()}">
+            <div th:text="${meal.getFood()}"></div>
+        </a>
+        <label>
+            Order
+            <input type="checkbox" name="addToCart" th:id='${meal.getId()}' th:value='${meal.getId()}'>
+        </label>
+        <br>
+    </div>
+
+    <input type="submit" value="Order">
+</form>
+<!--<div th:each="meal : ${bucket}">-->
+<!--    <div th:text="${meal.getFood()}"></div>-->
+<!--</div>-->
 
 <!--<div th:text="'Address: ' + ${restaurant.getAddress().getAddress()}"></div>-->
 <!--<a th:href="'/userDetails/' + ${restaurant.getOwner().getUsername()}"><div th:text="'Owner: ' + ${restaurant.getOwner()}"></div></a><br>-->
 
+<br>
 <a href="/customer/mainCustomerSite/">Back</a>
 
 </body>

@@ -14,8 +14,8 @@
     <div th:switch="${delivery.getCourier()}">
         <div th:case="null">
             <label>
-                <select name="courierUserName" th:each="courier : ${couriers}">
-                    <option th:text="${courier.getUsername()}" th:value="${courier.getUsername()}"></option>
+                <select name="courierUserName">
+                    <option  th:each="courier : ${couriers}" th:text="${courier.getUsername()}" th:value="${courier.getUsername()}"></option>
                 </select>
             </label>
         </div>

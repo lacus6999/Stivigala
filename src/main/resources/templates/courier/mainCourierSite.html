@@ -2,14 +2,14 @@
 <html xmlns:th="https://www.thymeleaf.org" lang="hu">
 <head>
     <meta charset="UTF-8">
-    <title>Main Manager Site</title>
+    <title>Main Courier Site</title>
 </head>
 <body>
 
-<div>All restaurants:</div>
+<div>All deliveries:</div>
 <div th:each="delivery : ${deliveryList}">
     <a th:href="'/courier/' + ${delivery.getId()}">
-        <div th:text="${delivery.getId()} + '-' + ${delivery.getCourier().getFullName()}"></div>
+        <div th:text="${delivery.getId()} + '-' + ${delivery.getOrderedBy().getUsername()}"></div>
     </a>
 </div>
 
