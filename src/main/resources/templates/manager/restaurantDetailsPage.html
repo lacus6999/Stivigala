@@ -1,9 +1,11 @@
+<!--
 <!DOCTYPE html>
 <html xmlns:th="https://www.thymeleaf.org" lang="hu">
 <head>
     <title>Restaurant details</title>
 </head>
 <body>
+1.div tartalma ---------------------------------
 <div>Restaurant details</div>
 <div th:text="${restaurant.getName()} + ' Meals:'"></div>
 <div th:each="meal : ${restaurant.getMeals()}">
@@ -11,18 +13,105 @@
         <div th:text="${meal.getFood()}"></div>
     </a>
 </div>
+2.div tartalma ---------------------------------
 <div th:text="${restaurant.getName()} + ' Delivery requests:'"></div>
 <div th:each="delivery : ${restaurant.getDeliveries()}">
     <a th:href="'/manager/delivery/' + ${delivery.getId()}">
         <div th:text="${delivery.getCourier()} ? null : ((${delivery.getId()} + ' - NOT ASSIGNED') ?: (${delivery.getId()} + ' - ' + ${delivery.getCourier().getUsername()}))"></div>
     </a>
 </div>
+2.div tartalma vege---------------------------------
 <form action="/manager/meal/addNewMealPage" method="post">
     <input type="hidden" name="restaurantId" id="restaurantId" th:value="${restaurant.getId()}">
     <input type="submit" value="Add new meal!">
 </form>
+
 <a href="/manager/mainManagerSite">Back</a>
 
 </body>
 
-</html> 
+</html>
+-->
+<!doctype html>
+<html xmlns:th="https://www.thymeleaf.org" lang="hu">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <link rel="stylesheet" href="restaurantDetailPage.css">
+    <link rel="stylesheet" href="../static/restaurantDetailPage.css" th:href="@{/restaurantDetailPage.css}">
+    <title>Restaurant Detail Page | Stivigala</title>
+</head>
+<body>
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    AOS.init();
+</script>
+<div id="blur-none"></div>
+
+<div id="circle"></div>
+<div id="circle2"></div>
+<div id="circle3"></div>
+
+
+<div id="LeftDiv" class="font-quicksand">
+    <div class="row" id="TopRow">
+        <!-- TODO visszaugrás a manager sitera nem megy, de Laci, te biztos tudod miért nem :)-->
+        <button href="/manager/mainManagerSite" class="btn back-button">Back</button>
+        <h6 id="RestaurantName">Restaurant Name</h6>
+        <h5 id="meals" class="font-lobster">Meals</h5>
+
+
+        <div id="form">
+            <form action="/manager/meal/addNewMealPage" method="post">
+                <input type="hidden" name="restaurantId" id="restaurantId" th:value="${restaurant.getId()}">
+                <input type="submit" value="Add new meal!">
+            </form>
+        </div>
+
+        <!--Repeat start-->
+        <div th:each="meal : ${restaurant.getMeals()}">
+            <a th:href="'/manager/meal/' + ${meal.getId()}" class="links">
+                <div th:text="${meal.getFood()}" class="links-divs">Gabi Egy Király (meg persze aki csinálta)</div>
+            </a>
+        </div>
+        <!--Repeat end-->
+
+    </div>
+
+    <div class="row" id="BottomRow">
+        <h5 id="request" class="font-lobster">Delivery Request</h5>
+
+        <div th:each="delivery : ${restaurant.getDeliveries()}">
+            <a th:href="'/manager/delivery/' + ${delivery.getId()}" class="links">
+                <div th:text="${delivery.getCourier()} ? null : ((${delivery.getId()} + ' - NOT ASSIGNED') ?: (${delivery.getId()} + ' - ' + ${delivery.getCourier().getUsername()}))" class="links-divs">Fasz</div>
+            </a>
+        </div>
+
+    </div>
+</div>
+
+<div id="RightDiv" class="font-quicksand">
+    <img src="/welcome-image.png" alt="" id="superc-img">
+</div>
+
+
+
+<!-- Optional JavaScript; choose one of the two! -->
+
+<!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+
+<!-- Option 2: Separate Popper and Bootstrap JS -->
+<!--
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>
+-->
+</body>
+</html>

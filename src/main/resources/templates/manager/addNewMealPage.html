@@ -1,3 +1,4 @@
+<!--
 <!DOCTYPE html>
 <html xmlns:th="https://www.thymeleaf.org" lang="hu">
 <head>
@@ -20,4 +21,68 @@
 
 </body>
 
-</html> 
+</html>
+-->
+
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org/" lang="hu">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <link rel="stylesheet" href="addNewMealPage.css">
+    <link rel="stylesheet" href="../static/addNewMealPage.css" th:href="@{/addNewMealPage.css}">
+    <title>New Meal</title>
+</head>
+<body>
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    AOS.init();
+</script>
+<div id="blur-none"></div>
+
+<div id="circle"></div>
+<div id="circle2"></div>
+<div id="circle3"></div>
+
+<div id="AddMealDiv" class="font-quicksand">
+    <div class="text-center">
+        <h1 class="font-lobster pt-2">Add Meal</h1>
+        <form action="#" th:action="@{/manager/meal/addNew}"  method="post">
+            <label for="food">Food:</label>
+            <input type="text" id="food" name="food" placeholder="etc. Meal soup"> <br>
+
+            <label for="menu">Menu:</label>
+            <input type="text" id="menu" name="menu" placeholder="etc. Kid's Menu"> <br>
+
+            <label for="price">Price:</label>
+            <input type="text" id="price" name="price" placeholder="etc. 2.50$"> <br>
+
+            <label for="time">Time:</label>
+            <input type="text" id="time" name="time" placeholder="etc. 5:00">
+            <input type="hidden" id="restaurantId" name="restaurantId" th:value="${restaurantId}"> <br>
+
+            <button type="submit" value="submit">AddNew</button>
+        </form>
+    </div>
+</div>
+<!-- Optional JavaScript; choose one of the two! -->
+
+<!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+
+<!-- Option 2: Separate Popper and Bootstrap JS -->
+<!--
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>
+-->
+
+</body>
+
+</html>
