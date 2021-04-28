@@ -22,17 +22,35 @@ public class MainCourierSiteController {
     }
 
     @PostMapping("/courier/addAvailability")
-    public String addAvailability(String availability) throws Exception {
+    public String addAvailability(
+            String monday,
+            String tuesday,
+            String wednesday,
+            String thursday,
+            String friday,
+            String saturday,
+            String sunday
+    ) throws Exception {
+        String availability =
+                "Monday: " + monday +
+                        ", Tuesday: " + tuesday +
+                        ", Wednesday: " + wednesday +
+                        ", Thursday: " + thursday +
+                        ", Friday: " + friday +
+                        ", Saturday: " + saturday +
+                        ", Sunday: " + sunday;
         WoltUser woltUser = woltUserService.getCurrentAuthenticatedUser();
         woltUser.setAvailability(availability);
         woltUserService.updateUser(woltUser);
-        return "/courier/mainCourierSite";
+        return "redirect:/courier/getMainCourierSite";
     }
 
-    @GetMapping("/courier/mainCourierSite")
+    @GetMapping("/courier/getMainCourierSite")
     public String getMainCustomerSite(Model model) throws Exception {
-        if(woltUserService.getCurrentAuthenticatedUser().getAvailability() != null) {
-            model.addAttribute("deliveryList", deliveryRepository.findAllByCourier(woltUserService.getCurrentAuthenticatedUser()));
+        if (woltUserService.getCurrentAuthenticatedUser().getAvailability() != null) {
+            WoltUser woltUser = woltUserService.getCurrentAuthenticatedUser();
+            model.addAttribute("deliveryList", deliveryRepository.findAllByCourier(woltUser));
+            model.addAttribute("availability", woltUser.getAvailability());
             return "courier/mainCourierSite";
         } else {
             return "courier/addAvailability";

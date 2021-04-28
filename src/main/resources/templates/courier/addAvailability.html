@@ -1,15 +1,41 @@
 <!DOCTYPE html>
-<html xmlns:th="https://www.thymeleaf.org" lang="hu">
+<html xmlns th="https //www.thymeleaf.org" lang="hu">
 <head>
     <meta charset="UTF-8">
     <title>AddAvailability</title>
 </head>
 <body>
 <form method="post" action="/courier/addAvailability">
-  <label>
-    <input type="text" name="availability">
-  </label>
-  <input type="submit">
+    <p>Avaliability: </p>
+    <label>
+        Monday <br>
+        <input id="monday" type="text" name="monday">
+    </label><br>
+    <label>
+        Tuesday <br>
+        <input type="text" name="tuesday">
+    </label><br>
+    <label>
+        Wednesday <br>
+        <input type="text" name="wednesday">
+    </label><br>
+    <label>
+        Thursday <br>
+        <input type="text" name="thursday">
+    </label><br>
+    <label>
+        Friday <br>
+        <input type="text" name="friday">
+    </label><br>
+    <label>
+        Saturday <br>
+        <input type="text" name="saturday">
+    </label><br>
+    <label>
+        Sunday <br>
+        <input type="text" name="sunday">
+    </label>
+    <input type="submit" value="Save">
 </form>
 </body>
 </html>

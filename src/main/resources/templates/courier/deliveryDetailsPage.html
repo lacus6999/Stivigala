@@ -10,12 +10,12 @@
 <!--TODO EDIT using fragments-->
 <div th:text="'Delivery id: ' + ${delivery.get().getId()}"></div>
 <div th:text="'Ordered by: ' + ${delivery.get().getOrderedBy().getUsername()}"></div>
-<div th:text="'Address: ' + (${delivery.get().getOrderedBy().getAddresses().size() != 0} ? ${delivery.get().getOrderedBy().getAddresses().get(0)} : 'null') "></div>
+<div th:text="'Address: ' + (${delivery.get().getOrderedBy().getAddresses().size() != 0} ? ${delivery.get().getOrderedBy().getAddresses().get(0).getAddress()} : 'null') "></div>
 <div th:text="'Restaurant: ' + ${delivery.get().getRestaurant().getName()}"></div>
 <div th:text="'Restaurant address: ' + (${delivery.get().getRestaurant().getAddress() != null} ? ${delivery.get().getRestaurant().getAddress().getAddress()} : 'null') "></div>
 <div th:text="'Price: ' + ${delivery.get().getPrice()}"></div>
 <br>
-<a th:href="'/courier/mainCourierSite/'">Back</a>
+<a th:href="'/courier/getMainCourierSite/'">Back</a>
 
 
 </body>
