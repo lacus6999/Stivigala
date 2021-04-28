@@ -18,8 +18,8 @@ public class ManagerRestaurantController {
     }
 
     @GetMapping("/manager/restaurant/{id}")
-    public String showRestaurantDetailsPage(Model model, @PathVariable String id) {
-        model.addAttribute("restaurant", managerService.getRestaurantById(Integer.parseInt(id)));
+    public String showRestaurantDetailsPage(Model model, @PathVariable Integer id) {
+        model.addAttribute("restaurant", managerService.getRestaurantById(id));
 
         return "/manager/restaurantDetailsPage";
     }

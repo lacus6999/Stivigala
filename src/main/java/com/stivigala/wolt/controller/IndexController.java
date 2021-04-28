@@ -1,10 +1,9 @@
 package com.stivigala.wolt.controller;
 
-import com.stivigala.wolt.dbo.user.WoltUserService;
+import com.stivigala.wolt.service.user.WoltUserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class IndexController {

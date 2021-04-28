@@ -1,9 +1,8 @@
-package com.stivigala.wolt.email;
+package com.stivigala.wolt.service.email;
 
 import com.stivigala.wolt.dbo.confirmationtoken.ConfirmationToken;
 import com.stivigala.wolt.dbo.confirmationtoken.ConfirmationTokenRepository;
 import com.stivigala.wolt.dbo.user.WoltUser;
-import com.stivigala.wolt.dbo.user.WoltUserService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;

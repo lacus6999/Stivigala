@@ -1,10 +1,13 @@
-package com.stivigala.wolt.dbo.user;
+package com.stivigala.wolt.service.user;
 
 import com.stivigala.wolt.dbo.address.Address;
+import com.stivigala.wolt.dbo.address.AddressRepository;
 import com.stivigala.wolt.dbo.authority.Authority;
 import com.stivigala.wolt.dbo.authority.AuthorityRepository;
 import com.stivigala.wolt.dbo.authority.AuthorityType;
-import com.stivigala.wolt.email.EmailService;
+import com.stivigala.wolt.dbo.user.WoltUser;
+import com.stivigala.wolt.dbo.user.WoltUserRepository;
+import com.stivigala.wolt.service.email.EmailService;
 import lombok.AllArgsConstructor;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -13,6 +16,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -22,14 +27,26 @@ public class WoltUserService {
     private final WoltUserRepository woltUserRepository;
     private final AuthorityRepository authorityRepository;
     private final PasswordEncoder passwordEncoder;
+    private final AddressRepository addressRepository;
 
     private final EmailService emailService;
 
-    public void register(String username, String password, String email, String fullName, String phone, List<Address> addresses, AuthorityType authority) {
-        WoltUser woltUser = new WoltUser(username, passwordEncoder.encode(password), email, fullName, false, phone,new ArrayList<>(), addresses);
+    public void register(WoltUser woltUser, String address, AuthorityType authority) {
+        Address addressObj = new Address(null, address, woltUser);
+
+        woltUser.setAddresses(Collections.singletonList(addressObj));
+        woltUser.setPassword(passwordEncoder.encode(woltUser.getPassword()));
+        woltUser.setEnabled(false);
+        woltUser.setRestaurants(new ArrayList<>());
+
         woltUserRepository.save(woltUser);
+        addressRepository.save(addressObj);
         authorityRepository.save(new Authority(woltUser.getUsername(), authority));
         emailService.sendConfirmationEmail(woltUser);
+    }
+
+    public void updateUser(WoltUser woltUser) {
+        woltUserRepository.save(woltUser);
     }
 
     public WoltUser getCurrentAuthenticatedUser() throws Exception {

@@ -2,13 +2,14 @@ package com.stivigala.wolt.controller.authentication;
 
 import com.stivigala.wolt.dbo.address.Address;
 import com.stivigala.wolt.dbo.authority.AuthorityType;
-import com.stivigala.wolt.dbo.user.WoltUserService;
+import com.stivigala.wolt.dbo.user.WoltUser;
+import com.stivigala.wolt.service.user.WoltUserService;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Arrays;
 import java.util.Collections;
 
 @Controller
@@ -26,17 +27,8 @@ public class RegisterController {
     }
 
     @PostMapping("/register")
-    public String registerUser(HttpServletRequest request) {
-        woltUserService.register(
-                request.getParameter("username"),
-                request.getParameter("password"),
-                request.getParameter("email"),
-                request.getParameter("fullname"),
-                request.getParameter("phone"),
-                Collections.singletonList(new Address()),
-                AuthorityType.valueOf(request.getParameter("authority").toUpperCase())
-        );
-
+    public String registerUser(WoltUser woltUser, String address, String authority) {
+        woltUserService.register(woltUser, address, AuthorityType.valueOf(authority.toUpperCase()));
         return "authentication/verify";
     }
 }

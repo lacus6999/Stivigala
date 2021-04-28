@@ -13,7 +13,7 @@ import com.stivigala.wolt.dbo.restaurant.Restaurant;
 import com.stivigala.wolt.dbo.restaurant.RestaurantRepository;
 import com.stivigala.wolt.dbo.user.WoltUser;
 import com.stivigala.wolt.dbo.user.WoltUserRepository;
-import com.stivigala.wolt.dbo.user.WoltUserService;
+import com.stivigala.wolt.service.user.WoltUserService;
 import com.sun.istack.NotNull;
 import org.springframework.stereotype.Service;
 
@@ -22,6 +22,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @Service
 public class ManagerService {
@@ -67,7 +68,7 @@ public class ManagerService {
         return restaurantDeliveryMap;
     }
 
-    public List<Restaurant> findAllRestaurants() throws Exception {
+    public List<Restaurant> findAllRestaurantsByOwner() throws Exception {
         return restaurantRepository.findAllByOwner(woltUserService.getCurrentAuthenticatedUser());
     }
 

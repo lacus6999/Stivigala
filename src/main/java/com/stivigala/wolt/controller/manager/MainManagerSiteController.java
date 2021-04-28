@@ -1,9 +1,14 @@
 package com.stivigala.wolt.controller.manager;
 
-import com.stivigala.wolt.dbo.user.WoltUserService;
+import com.stivigala.wolt.dbo.restaurant.Restaurant;
+import com.stivigala.wolt.service.user.WoltUserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+
+import javax.servlet.http.HttpServletRequest;
+import java.util.List;
+import java.util.stream.Collectors;
 
 
 @Controller
@@ -18,10 +23,13 @@ public class MainManagerSiteController {
     }
 
     @GetMapping("/manager/mainManagerSite")
-    public String showMainManagerPage(Model model) throws Exception {
-        model.addAttribute("restaurants", managerService.findAllRestaurants());
-        model.addAttribute("currentUsername", woltUserService.getCurrentAuthenticatedUser().getUsername());
+    public String showMainManagerPage(Model model, HttpServletRequest request) throws Exception {
+        initSession(request);
+        model.addAttribute("restaurants", managerService.findAllRestaurantsByOwner());
         return "manager/mainManagerSite";
+    }
+
+    private void initSession(HttpServletRequest request) throws Exception {
     }
 
 }

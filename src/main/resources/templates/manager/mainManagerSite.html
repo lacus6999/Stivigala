@@ -21,11 +21,11 @@
 
 
 
-<h2 th:text="${currentUsername}" class="font-quicksand"></h2>
-
+<h2 th:text="${#authentication.name}" class="font-quicksand"></h2>
 
 <div id="main">
     <h1 class="font-lobster" id="stivigala-word">Stivigala  <br> Restaurants</h1>
+
     <a href="/manager/addNewRestaurantPage" id="new"><div>New restaurant!</div></a>
         <ul id="restaurant-list" class="font-quicksand">
             <div th:each="restaurant : ${restaurants}">
@@ -36,6 +36,7 @@
                 </li>
             </div>
         </ul>
+
 </div>
 
 <img src="welcome-image.png" alt="" id="big-image">

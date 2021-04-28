@@ -38,4 +38,6 @@ public class WoltUser {
     @OneToMany(mappedBy = "woltUser")
     private List<Address> addresses;
 
+    private String availability;
+
 }

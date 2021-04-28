@@ -6,7 +6,7 @@ import com.stivigala.wolt.dbo.meal.Meal;
 import com.stivigala.wolt.dbo.meal.MealRepository;
 import com.stivigala.wolt.dbo.restaurant.Restaurant;
 import com.stivigala.wolt.dbo.restaurant.RestaurantRepository;
-import com.stivigala.wolt.dbo.user.WoltUserService;
+import com.stivigala.wolt.service.user.WoltUserService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
