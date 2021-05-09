@@ -1,5 +1,7 @@
 package com.stivigala.wolt.controller.manager;
 
+import com.stivigala.wolt.dbo.user.WoltUserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,9 +14,11 @@ import javax.servlet.http.HttpServletRequest;
 public class ManagerRestaurantController {
 
     private final ManagerService managerService;
+    private final WoltUserService userService;
 
-    public ManagerRestaurantController(ManagerService managerService) {
+    public ManagerRestaurantController(ManagerService managerService, WoltUserService userService) {
         this.managerService = managerService;
+        this.userService = userService;
     }
 
     @GetMapping("/manager/restaurant/{id}")
@@ -25,7 +29,8 @@ public class ManagerRestaurantController {
     }
 
     @GetMapping("/manager/addNewRestaurantPage")
-    public String showNewRestaurantPage() {
+    public String showNewRestaurantPage(Model model) throws Exception {
+        model.addAttribute("currentUsername", userService.getCurrentAuthenticatedUser().getUsername());
         return "manager/addNewRestaurantPage";
     }
 

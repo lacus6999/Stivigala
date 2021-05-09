@@ -34,6 +34,6 @@ public class ManagerMealController {
     @PostMapping("/manager/meal/addNew")
     public String addNewMeal(HttpServletRequest request) {
         managerService.addNewMeal(request);
-        return "redirect:/manager/mainManagerSite";
+        return "redirect:/manager/restaurant/" + request.getParameter("restaurantId");
     }
 }
