@@ -1,7 +1,6 @@
 package com.stivigala.wolt.controller.manager;
 
-import com.stivigala.wolt.dbo.user.WoltUserService;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.stivigala.wolt.service.user.WoltUserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;

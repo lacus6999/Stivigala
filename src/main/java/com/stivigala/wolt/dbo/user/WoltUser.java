@@ -1,5 +1,6 @@
 package com.stivigala.wolt.dbo.user;
 
+import com.stivigala.wolt.dbo.availability.Availability;
 import com.stivigala.wolt.dbo.address.Address;
 import com.stivigala.wolt.dbo.restaurant.Restaurant;
 import com.sun.istack.NotNull;
@@ -38,6 +39,8 @@ public class WoltUser {
     @OneToMany(mappedBy = "woltUser")
     private List<Address> addresses;
 
-    private String availability;
+    @OneToOne
+    @JoinColumn(referencedColumnName = "id")
+    private Availability availability;
 
 }
