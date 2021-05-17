@@ -2,47 +2,77 @@
 <html xmlns:th="https://www.thymeleaf.org" lang="hu">
 <head>
     <title>Delivery details</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <link rel="stylesheet" href="../static/anotherDeliveryDetailsPage.css" th:href="@{/anotherDeliveryDetailsPage.css}">
 </head>
 <body>
-<span th:#{bool}=true></span>
-<div>Delivery details:</div>
-<form action="/manager/delivery/assignCourierToDelivery" method="post">
 
-    <div th:text="'Delivery id: ' + ${delivery.getId()}"></div>
-    <div th:text="'Ordered by: ' + ${delivery.getOrderedBy().getFullName()}"></div>
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    AOS.init();
+</script>
+<div id="blur-none"></div>
 
-    <div th:switch="${delivery.getCourier()}">
-        <div th:case="null">
-            <label>
-                <select name="courierUserName">
-                    <option  th:each="courier : ${couriers}" th:text="${courier.getUsername()}" th:value="${courier.getUsername()}"></option>
-                </select>
-            </label>
+<div id="circle"></div>
+<div id="circle2"></div>
+<div id="circle3"></div>
+
+<div id="main">
+
+    <form action="/manager/delivery/assignCourierToDelivery" method="post">
+        <h1 class="font-lobster" id="details-title">Delivery details:</h1>
+        <span th:#{bool}=true></span>
+
+        <div class="items font-quicksand" th:text="'Delivery id: ' + ${delivery.getId()}">Delivery ID:</div>
+        <div class="items font-quicksand" th:text="'Ordered by: ' + ${delivery.getOrderedBy().getFullName()}">Ordered by:</div>
+
+        <div th:switch="${delivery.getCourier()}">
+            <div th:case="null">
+                <label>
+                    <select name="courierUserName" id="select" class="font-quicksand">
+                        <option  th:each="courier : ${couriers}" th:text="${courier.getUsername()}" th:value="${courier.getUsername()}" class="options font-quicksand">fasz</option>
+                    </select>
+                </label>
+            </div>
+
+            <div class="items cour-name font-quicksand" th:case="*" th:text="${delivery.getCourier().getFullName()}">Stilo (Cour. name)</div>
         </div>
 
-        <div th:case="*" th:text="${delivery.getCourier().getFullName()}">ASDSADASDSADASDASDSAD NEM NULLL</div>
-    </div>
+        <input type="hidden" th:value="${delivery.getId()}" name="deliveryId">
 
-    <input type="hidden" th:value="${delivery.getId()}" name="deliveryId">
-
-    <div th:text="'Booked at: ' + ${delivery.getBookedAt()}"></div>
-    <br>
-    <div style="font-weight: bold; font-size: larger" th:each="meal : ${delivery.getMeals()}">
-        <div th:text="' Menu: ' + ${meal.getMenu()}"></div>
-        <div th:text="' Food: ' + ${meal.getFood()}"></div>
-        <div th:text="' Time: ' + ${meal.getTime()}"></div>
-    </div>
-    <br>
-    <div th:switch="${delivery.getCourier()}">
-        <div th:case="null">
-            <button type="submit" value="Assign">Assign</button>
+        <div class="items ordered-at font-quicksand" th:text="'Booked at: ' + ${delivery.getBookedAt()}">Booked at: 2021-05-21 15:21:53.444</div>
+        <br>
+        <div style="font-weight: bold; font-size: larger" th:each="meal : ${delivery.getMeals()}">
+            <div th:text="' Menu: ' + ${meal.getMenu()}"></div>
+            <div th:text="' Food: ' + ${meal.getFood()}"></div>
+            <div th:text="' Time: ' + ${meal.getTime()}"></div>
         </div>
-        <div th:case="*">NO BUTTON FOR U
-        </div>
-    </div>
-</form>
-<a th:href="'/manager/restaurant/' + ${delivery.getRestaurant().getId()}">Back</a>
 
+        <div th:switch="${delivery.getCourier()}">
+            <div th:case="null">
+                <button type="submit" value="Assign" id="assign-button" class="font-quicksand">Assign</button>
+            </div>
+            <br>
+            <div th:case="*">NO BUTTON FOR U</div>
+        </div>
+    </form>
+    <a th:href="'/manager/restaurant/' + ${delivery.getRestaurant().getId()}" id="back-a" class="font-quicksand">Back</a>
+
+</div>
+
+<!-- Optional JavaScript; choose one of the two! -->
+
+<!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+
+<!-- Option 2: Separate Popper and Bootstrap JS -->
+<!--
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>
+-->
 
 </body>
 

@@ -13,6 +13,7 @@
 body {
     margin: 0px;
     padding: 0px;
+    color: black;
     background-color: rgb(255,255,229);
 }
 .link {
@@ -20,23 +21,14 @@ body {
     text-decoration: none;
     transition: .5s ease;
 }
+
+
 .link:hover {
     letter-spacing: 0.05rem;
     color:rgb(46, 46, 46);
     text-decoration: none;
 }
-.link::after {
-    content: '';
-    display: block;
-    width: 0;
-    height: 1px;
-    background:rgb(46, 46, 46);
-    transition: width .5s;
-    margin: 0 auto 0 auto;
-  }
-.link:hover::after {
-    width: 100%;  
-}
+
 
 #blur-none {
     position: fixed;
@@ -53,13 +45,6 @@ body {
     0%{opacity: 1;}
     100%{opacity: 0;display: none;z-index:0}
 }
-
-
-
-
-
-
-
 
 #circle {
     position: absolute;
@@ -113,36 +98,40 @@ body {
     100%{clip-path: ellipse(25% 40% at 100% 50%);}
 }
 
-.allDeliveries {
-    margin-left: 20px;
-    font-size: 130%;
-}
-.allDeliveries-list {
-    margin-left: 20px;
-    font-size: 130%;
-    top: 5%;
-}
-
-.availability{
-    margin-left: 20px;
-    font-size: 130%;
+#main {
+    display: block;
+    margin: auto;
     position: absolute;
-    top: 50%;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%,-50%);
 }
 
-#courier-img {
-    position: fixed;
-    right: 10%;
-    z-index: 10;
-    animation: car 5s ease;
-    animation-fill-mode: forwards;
-
+.div-list-item {
+    text-align: center;
+    font-size: 130%;
+    transition: .3s ease;
 }
 
-@keyframes car {
-    0% { right:100%}
-    70%{  right: 8%;transform: rotate(2.5deg);}
-    100%{ right: 10%;}
+.div-list-item:hover {
+    letter-spacing: 0.05rem;
+}
+.div-list-item::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 1px;
+    background:rgb(0, 0, 0);
+    transition: width .5s;
+    margin: 0 auto 0 auto;
+  }
+.div-list-item:hover::after {
+    width: 60%;  
+}
+#auth-name {
+    position: absolute;
+    top:0.5%;
+    left: 0.5%;
 }
 
 .back-button {
@@ -168,9 +157,4 @@ body {
 }
 .back-button:hover::after{
     width: 100%;
-}
-
-#main {
-    position: absolute;
-    top:1%;
 }

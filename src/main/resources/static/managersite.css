@@ -190,7 +190,30 @@ h2{
     color: #222222;
 }
 
-
+.back-button {
+    text-align: center;
+    color: black;
+    transition: .5s ease;
+    margin-left: 10px;
+    position: absolute;
+    right: 0%;
+    top:0%;
+}
+.back-button:hover {
+    letter-spacing: 0.05rem;
+}
+.back-button::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 1px;
+    background:black;
+    transition: width .5s;
+    margin: 0 auto 0 auto;
+}
+.back-button:hover::after{
+    width: 100%;
+}
 
 
 

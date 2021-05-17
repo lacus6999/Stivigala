@@ -113,64 +113,67 @@ body {
     100%{clip-path: ellipse(25% 40% at 100% 50%);}
 }
 
-.allDeliveries {
-    margin-left: 20px;
-    font-size: 130%;
-}
-.allDeliveries-list {
-    margin-left: 20px;
-    font-size: 130%;
-    top: 5%;
-}
-
-.availability{
-    margin-left: 20px;
-    font-size: 130%;
-    position: absolute;
-    top: 50%;
-}
-
-#courier-img {
-    position: fixed;
-    right: 10%;
-    z-index: 10;
-    animation: car 5s ease;
-    animation-fill-mode: forwards;
-
-}
-
-@keyframes car {
-    0% { right:100%}
-    70%{  right: 8%;transform: rotate(2.5deg);}
-    100%{ right: 10%;}
-}
-
-.back-button {
-    text-align: center;
-    color: black;
+input[type=submit]{
+    background-image: linear-gradient(90deg, #fff8c4, #feeba2, #fed676, #febb4a);
+    border: black 1px solid;
+    border-radius: 100px;
     transition: .5s ease;
-    margin-left: 10px;
-    position: absolute;
-    right: 0%;
-    top:0%;
+    margin-top: 10px;
 }
-.back-button:hover {
-    letter-spacing: 0.05rem;
+input[type=submit]:hover{
+    box-shadow: 0px 0px 10px #ee7919;
 }
-.back-button::after {
-    content: '';
-    display: block;
-    width: 0;
-    height: 1px;
-    background:black;
-    transition: width .5s;
-    margin: 0 auto 0 auto;
-}
-.back-button:hover::after{
-    width: 100%;
+
+.title {
+    font-size: 150%;
+    margin-bottom: 30px;
 }
 
 #main {
     position: absolute;
-    top:1%;
+    left:1%;
+}
+#back-a {
+    text-decoration: none;
+    color: black;
+    transition: .3s ease;
+    position: absolute;
+    bottom: 1%;
+    left:1%;
+}
+#back-a:hover {
+    letter-spacing: 0.05rem;
+    color:rgb(0, 0, 0);
+    text-decoration: none;
+}
+#back-a::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 1px;
+    background:rgb(0, 0, 0);
+    transition: width .5s;
+    margin: 0 auto 0 auto;
+  }
+  #back-a:hover::after {
+    width:100%;  
+}
+
+.meal-icon {
+    width: 5%;
+}
+
+#big-image {
+    position: absolute;
+    width: 400px;
+    right:0%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    z-index: 10;
+    animation: bounce 1s ease;
+    animation-fill-mode: forwards;
+}
+@keyframes bounce {
+    0%{top: -30%;}
+    100%{top: 50%;}
 }

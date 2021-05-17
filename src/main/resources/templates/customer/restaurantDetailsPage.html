@@ -2,35 +2,49 @@
 <html xmlns:th="https://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html" lang="hu">
 <head>
     <meta charset="UTF-8">
-    <title>Restaurant Site</title>
+    <title>Restaurants Detail Page | Stivigala</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="restaurantsDetailPage.css">
+    <link rel="stylesheet" href="../static/restaurantsDetailPage.css" th:href="@{/restaurantsDetailPage.css}">
+
 </head>
 <body>
 
-<div th:text="${restaurant.getName()} + ' Meals:'"></div>
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    AOS.init();
+</script>
+<div id="blur-none"></div>
 
-<form action="#"  th:action="@{/customer/order}"  method="post">
-    <div th:each="meal : ${mealList}">
-        <a th:href="'/customer/restaurant/meal/' + ${meal.getId()}">
-            <div th:text="${meal.getFood()}"></div>
-        </a>
-        <label>
-            Order
-            <input type="checkbox" name="addToCart" th:id='${meal.getId()}' th:value='${meal.getId()}'>
-        </label>
-        <br>
-    </div>
+<div id="circle"></div>
+<div id="circle2"></div>
+<div id="circle3"></div>
 
-    <input type="submit" value="Order">
-</form>
-<!--<div th:each="meal : ${bucket}">-->
-<!--    <div th:text="${meal.getFood()}"></div>-->
-<!--</div>-->
 
-<!--<div th:text="'Address: ' + ${restaurant.getAddress().getAddress()}"></div>-->
-<!--<a th:href="'/userDetails/' + ${restaurant.getOwner().getUsername()}"><div th:text="'Owner: ' + ${restaurant.getOwner()}"></div></a><br>-->
+
+<div id="main">
+
+    <div th:text="${restaurant.getName()} + ' Meals:'" class="font-lobster title" >Restaurants meals</div>
+
+    <form action="#"  th:action="@{/customer/order}"  method="post">
+        <div th:each="meal : ${mealList}" class="font-quicksand">
+            <a th:href="'/customer/restaurant/meal/' + ${meal.getId()}">
+                <img src="/meal-icon.svg" alt="" class="meal-icon">
+                <label th:text="${meal.getFood()}"></label>
+                <input type="checkbox" name="addToCart" th:id='${meal.getId()}' th:value='${meal.getId()}'>
+            </a>
+        </div>
+
+
+        <input type="submit" value="Order">
+    </form>
+</div>
 
 <br>
-<a href="/customer/mainCustomerSite/">Back</a>
+<a href="/customer/mainCustomerSite/" id="back-a" class="font-quicksand">Back</a>
+
+<img src="/restaurant.svg" alt="" id="big-image">
 
 </body>
 </html>

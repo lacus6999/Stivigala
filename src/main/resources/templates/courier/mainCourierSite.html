@@ -1,32 +1,4 @@
-<!--
-<!DOCTYPE html>
-<html xmlns:th="https://www.thymeleaf.org" lang="hu">
-<head>
-    <meta charset="UTF-8">
-    <title>Main Courier Site</title>
-</head>
-<body>
 
-<div>All deliveries:</div>
-<div th:each="delivery : ${deliveryList}">
-    <a th:href="'/courier/' + ${delivery.getId()}">
-        <div th:text="${delivery.getId()} + '-' + ${delivery.getOrderedBy().getUsername()}"></div>
-    </a>
-</div>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-Availability:<br>
-<div th:text="${availability}"></div>
-
-</body>
-</html>
--->
 <!DOCTYPE html>
 <html xmlns:th="https://www.thymeleaf.org" lang="hu">
 <link rel="stylesheet" href="../static/mealsDetailsPage.css" th:href="@{/mainCourierSite.css}">
@@ -54,7 +26,8 @@ Availability:<br>
 
 <a href="/logout"><button  class="btn back-button">Log out</button></a>
 
-<div class="allDeliveries font-lobster">All deliveries:</div>
+<div id="main">
+<h1 class="allDeliveries font-lobster">All deliveries:</h1>
 
 <div th:each="delivery : ${deliveryList}" class="allDeliveries-list font-quicksand">
     <a th:href="'/courier/' + ${delivery.getId()}" class="link">
@@ -62,6 +35,7 @@ Availability:<br>
     </a>
 </div>
 <br>
+</div>
 
 <div class="availability font-lobster">Availability:<br>
     <div th:text="'Monday:'+${availability.getMonday()}" class="font-quicksand"></div>
