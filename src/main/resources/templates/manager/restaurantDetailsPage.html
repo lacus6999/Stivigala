@@ -57,7 +57,7 @@
 
         <div th:each="delivery : ${restaurant.getDeliveries()}">
             <a th:href="'/manager/delivery/' + ${delivery.getId()}" class="links">
-                <div th:text="${delivery.getCourier()} ? null : ((${delivery.getId()} + ' - NOT ASSIGNED') ?: (${delivery.getId()} + ' - ' + ${delivery.getCourier().getUsername()}))"
+                <div th:text="${delivery.getCourier()} ? null : ((${delivery.getOrderedBy().getFullName()} + ' - NOT ASSIGNED') ?: (${delivery.getId()} + ' - ' + ${delivery.getCourier().getUsername()}))"
                      class="links-divs">Fasz
                 </div>
             </a>
