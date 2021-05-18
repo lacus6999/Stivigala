@@ -1,0 +1,55 @@
+.kor {
+        width: 2000px;
+        height: 2000px;
+        background: #e6a257;
+        background-image: linear-gradient(90deg, #ffffe5, #fff8c4, #feeba2, #fed676, #febb4a, #fb9a2c, #ee7919);
+        position: fixed;
+        z-index: 100;
+    }
+    .kor1 {
+        bottom: 0%;
+        right: 0%;
+        clip-path: circle(100.0% at 100% 100%);
+        animation: kor1 3s ease;
+        animation-fill-mode: forwards;
+    }
+    @keyframes kor1 {
+        0%{clip-path: circle(100.0% at 100% 100%);}
+        95%{clip-path: circle(0.0% at 100% 100%);}
+        100%{clip-path: circle(0.0% at 100% 100%);display: none;}
+    }
+
+    .kor2 {
+        width: 2000px;
+        height: 2000px;
+        top: 0%;
+        left: 0%;
+        animation: kor2 3s ease;
+        animation-fill-mode: forwards;
+        clip-path: circle(100.0% at 0% 0%);
+    }
+    @keyframes kor2 {
+        0%{clip-path: circle(100.0% at 0 100);}
+        95%{clip-path: circle(0.0% at 0 0);}
+        100%{clip-path: circle(0.0% at 0 0);display: none;}
+    }
+
+    #aboutus {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        animation: aboutus 2s ease forwards;
+        animation-delay: 1.8s;
+        opacity: 0;
+        font-size: 400%;
+        color: black;
+        letter-spacing: 1rem;
+    }
+    @keyframes aboutus {
+        0%{opacity: 0;}
+        40%{opacity:1}
+        50%{opacity:1}
+        60%{opacity:1}
+        100%{opacity: 1;top:5%; letter-spacing: 0rem;}
+    }
