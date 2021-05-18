@@ -92,7 +92,8 @@ public class ManagerService {
                 null,
                 request.getParameter("menu"),
                 request.getParameter("food"),
-                Double.parseDouble(request.getParameter("price"))
+                Double.parseDouble(request.getParameter("price")),
+                0.0
         ));
     }
 
@@ -119,5 +120,11 @@ public class ManagerService {
             delivery.setStatus(DeliveryStatus.ASSIGNED);
             deliveryRepository.save(delivery);
         });
+    }
+
+    public void updateDiscount(Integer mealId, double discount) {
+        Meal meal = mealRepository.findById(mealId).get();
+        meal.setDiscount(discount);
+        mealRepository.save(meal);
     }
 }

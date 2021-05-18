@@ -34,4 +34,6 @@ public class Meal {
 
     private Double price;
 
+    private Double discount;
+
 }

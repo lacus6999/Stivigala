@@ -28,7 +28,12 @@
         <br>
         <div th:each="meal : ${#servletContext.getAttribute('meals')}">
             <div th:text="'Meal: ' + ${meal.getFood()}" class="meal-details">fg</div>
-            <div th:text="'Price: ' + ${meal.getPrice()}" class="meal-details">fg</div>
+            <div th:if="${meal.getDiscount()} == 0">
+                <div th:text="'Price: ' + ${meal.getPrice()}" class="meal-details">bb</div>
+            </div>
+            <div th:unless="${meal.getDiscount()} == 0">
+                <div th:text="'Discounted price: ' + (${meal.getPrice()} * (1 - (${meal.getDiscount()}) / 100))" class="meal-details">bb</div>
+            </div>
             <br>
         </div>
         <div th:text="'Final price: ' + ${#servletContext.getAttribute('price')}" class="meal-details">fg</div>

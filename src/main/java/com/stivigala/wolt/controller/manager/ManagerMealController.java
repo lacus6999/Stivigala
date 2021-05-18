@@ -31,6 +31,12 @@ public class ManagerMealController {
         return "/manager/addNewMealPage";
     }
 
+    @PostMapping("/manager/updateDiscount")
+    public String updateDiscount(double discount, Integer mealId) {
+        managerService.updateDiscount(mealId, discount);
+        return "redirect:/manager/meal/" + mealId;
+    }
+
     @PostMapping("/manager/meal/addNew")
     public String addNewMeal(HttpServletRequest request) {
         managerService.addNewMeal(request);

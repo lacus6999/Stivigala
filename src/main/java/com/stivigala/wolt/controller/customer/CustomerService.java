@@ -42,7 +42,7 @@ public class CustomerService {
     public double calculatePrice(List<Meal> meals) throws Exception {
         Double price = 0.0;
         for (Meal meal : meals) {
-            price += meal.getPrice();
+            price += meal.getPrice() * (1 - (meal.getDiscount() / 100));
         }
 
         return price;
