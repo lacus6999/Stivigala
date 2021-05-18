@@ -19,7 +19,7 @@ public class WoltAuthSuccessHandler implements AuthenticationSuccessHandler {
             if (authority.getAuthority().equals(AuthorityType.MANAGER.toString())) {
                 httpServletResponse.sendRedirect("/manager/mainManagerSite");
             } else if (authority.getAuthority().equals(AuthorityType.CUSTOMER.toString())) {
-                httpServletResponse.sendRedirect("/customer/mainCustomerSite");
+                httpServletResponse.sendRedirect("/customer/getMainCustomerSite");
             } else if (authority.getAuthority().equals(AuthorityType.COURIER.toString())) {
                 httpServletResponse.sendRedirect("/courier/getMainCourierSite");
             } else

@@ -27,13 +27,13 @@
 
     <div th:text="${restaurant.getName()} + ' Meals:'" class="font-lobster title" >Restaurants meals</div>
 
-    <form action="#"  th:action="@{/customer/order}"  method="post">
+    <form action="#"  th:action="@{/customer/showDeliveryDetails}"  method="post">
         <div th:each="meal : ${mealList}" class="font-quicksand">
             <a th:href="'/customer/restaurant/meal/' + ${meal.getId()}">
                 <img src="/meal-icon.svg" alt="" class="meal-icon">
                 <label th:text="${meal.getFood()}"></label>
-                <input type="checkbox" name="addToCart" th:id='${meal.getId()}' th:value='${meal.getId()}'>
             </a>
+                <input type="checkbox" name="addToCart" th:id='${meal.getId()}' th:value='${meal.getId()}'>
         </div>
 
 

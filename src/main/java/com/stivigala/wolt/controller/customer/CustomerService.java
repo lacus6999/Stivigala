@@ -25,23 +25,33 @@ public class CustomerService {
     public Restaurant findRestaurantById(Integer id) {
         return restaurantRepository.findById(id).orElse(null);
     }
+
     public Meal findMealById(Integer id) {
         return mealRepository.findById(id).orElse(null);
     }
-    public List<Meal> getAllMealByRestaurantId(Integer id) {return mealRepository.findAllByRestaurantId(id);}
 
-    public void order(List<Integer> ids) throws Exception {
-        List<Meal> meals = mealRepository.findAllByIdIn(ids);
+    public List<Meal> getAllMealByRestaurantId(Integer id) {
+        return mealRepository.findAllByRestaurantId(id);
+    }
 
+    public List<Meal> findAllMealsByIds(List<Integer> ids) {
+        return mealRepository.findAllByIdIn(ids);
+    }
+
+    public double calculatePrice(List<Meal> meals) throws Exception {
         Double price = 0.0;
-
         for (Meal meal : meals) {
             price += meal.getPrice();
         }
 
+        return price;
+    }
+
+    public void order(List<Meal> meals, double price, boolean isHomeDelivery) throws Exception {
         deliveryRepository.save(new Delivery(
                 null,
                 false,
+                isHomeDelivery,
                 woltUserService.getCurrentAuthenticatedUser(),
                 meals,
                 meals.get(0).getRestaurant(),
@@ -49,5 +59,6 @@ public class CustomerService {
                 null,
                 price
         ));
+
     }
 }

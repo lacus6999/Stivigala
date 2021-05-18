@@ -23,6 +23,8 @@ public class Delivery {
 
     private Boolean isDelivered;
 
+    private Boolean isHomeDelivery;
+
     @OneToOne
     @JoinColumn(name="orderedBy", referencedColumnName = "username")
     private WoltUser orderedBy;
