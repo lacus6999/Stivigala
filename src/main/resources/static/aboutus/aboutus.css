@@ -1,0 +1,97 @@
+@import url('https://fonts.googleapis.com/css2?family=Berkshire+Swash&family=Lobster&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Quicksand&display=swap');
+body {
+    margin: 0px;
+    padding: 0px;
+    background: #ffce99;
+    background-image: linear-gradient(90deg, #ffffe5, #fff8c4, #feeba2, #fed676, #febb4a, #fb9a2c);
+}
+
+.font-lobster{
+    font-family: 'Lobster', cursive;
+}
+.font-quicksand {
+    font-family: 'Quicksand', sans-serif;
+}
+
+#main {
+    margin-top: 80px;
+    color: black;
+    animation: float 3s ease;
+    animation-fill-mode: forwards;
+    animation-delay: 2.5s;
+    opacity: 0;
+}
+@keyframes float {
+    0%{opacity:0;}
+    100%{opacity: 1;}
+}
+
+.top, .bottom {
+    text-align: center;
+}
+
+.images {
+    width: 260px;
+    filter: brightness(0%) grayscale(100%);
+    clip-path: circle(10% at 50% 50%);
+    transition: 1s ease;
+    border-radius: 5px;
+}
+.images:hover {
+    clip-path: circle(100% at 50% 50%);
+    filter: brightness(100%) grayscale(0%);
+    transform: rotate(4deg);
+}
+h1 {
+    font-size: 200%;
+}
+
+p{
+    margin-bottom: 1px;
+    margin-top: 1px;
+}
+
+.icons {
+    display: inline;
+    width: 30px;
+    margin-right: 10px;
+}
+
+#pannon-footer {
+    background-color: rgb(20, 20, 20);
+    color: white;
+    width: 100%;
+    padding: 40px;
+    margin-top: 150px;
+    margin-bottom: 0px;
+    font-size: 200%;
+}
+
+.egyetem-a {
+    color: white;
+    text-decoration: none;
+    transition: .3s ease;
+}
+.egyetem-a:hover {
+    color: rgb(150, 150, 150);
+    text-decoration: none;
+}
+
+#extra-gomb {
+    background-color: rgb(20, 20, 20);
+    border: none;
+    color: white;
+    transition: .3s ease;
+}
+
+#extra-gomb:hover {
+    background-color: rgb(31, 31, 31);
+}
+.letterspacing {
+    transition: 1s ease;
+}
+.letterspacing:hover {
+    letter-spacing: 0.1rem;
+}
