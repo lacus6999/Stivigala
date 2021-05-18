@@ -45,6 +45,9 @@ public class Delivery {
 
     private Double price;
 
+    @Enumerated(EnumType.STRING)
+    private DeliveryStatus status;
+
 }
 
 

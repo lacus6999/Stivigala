@@ -1,5 +1,6 @@
 package com.stivigala.wolt.controller.customer;
 
+import com.stivigala.wolt.dbo.delivery.DeliveryStatus;
 import com.stivigala.wolt.dbo.delivery.Delivery;
 import com.stivigala.wolt.dbo.delivery.DeliveryRepository;
 import com.stivigala.wolt.dbo.meal.Meal;
@@ -57,7 +58,8 @@ public class CustomerService {
                 meals.get(0).getRestaurant(),
                 new Date(),
                 null,
-                price
+                price,
+                DeliveryStatus.NOT_ASSIGNED
         ));
 
     }

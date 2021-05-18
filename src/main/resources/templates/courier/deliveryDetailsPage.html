@@ -47,6 +47,7 @@
 
 <!--TODO EDIT using fragments-->
 <div id="details" class="font-quicksand">
+    <form action="/courier/delivery/setDeliveryStatus" method="post">
     <h1 class="font-lobster" id="details-title">
         Delivery details:
     </h1>
@@ -56,6 +57,24 @@
     <div class="pb-2" th:text="'Restaurant: ' + ${delivery.get().getRestaurant().getName()}">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Recusandae, molestias?</div>
     <div class="pb-2" th:text="'Restaurant address: ' + (${delivery.get().getRestaurant().getAddress() != null} ? ${delivery.get().getRestaurant().getAddress().getAddress()} : 'null') ">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Recusandae, molestias?</div>
     <div class="pb-2" th:text="'Price: ' + ${delivery.get().getPrice()}">Lorem ipsum, </div>
+    <div th:switch="${delivery.get().getStatus()}">
+        <div th:if="${!(delivery.get().getStatus().equals(T(com.stivigala.wolt.dbo.delivery.DeliveryStatus).DELIVERED))}">
+            <label>
+                <select name="status" id="select" class="font-quicksand">
+                    <option  text="In delivery" th:value="${T(com.stivigala.wolt.dbo.delivery.DeliveryStatus).IN_DELIVERY}" class="options font-quicksand">in delivery</option>
+                    <option  text="Delivered" th:value="${T(com.stivigala.wolt.dbo.delivery.DeliveryStatus).DELIVERED}" class="options font-quicksand">delivered</option>
+                </select>
+            </label>
+        </div>
+    </div>
+
+    <input type="hidden" th:value="${delivery.get().getId()}" name="deliveryId">
+
+    <br>
+    <div th:if="${!(delivery.get().getStatus().equals(T(com.stivigala.wolt.dbo.delivery.DeliveryStatus).DELIVERED))}">
+        <button type="submit" value="Status" id="status-button" class="font-quicksand">Set status</button>
+    </div>
+    </form>
 
     <br>
     <a th:href="'/courier/getMainCourierSite/'" id="back">Back</a>

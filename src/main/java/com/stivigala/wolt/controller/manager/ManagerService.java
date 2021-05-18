@@ -5,6 +5,7 @@ import com.stivigala.wolt.dbo.address.AddressRepository;
 import com.stivigala.wolt.dbo.authority.Authority;
 import com.stivigala.wolt.dbo.authority.AuthorityRepository;
 import com.stivigala.wolt.dbo.authority.AuthorityType;
+import com.stivigala.wolt.dbo.delivery.DeliveryStatus;
 import com.stivigala.wolt.dbo.delivery.Delivery;
 import com.stivigala.wolt.dbo.delivery.DeliveryRepository;
 import com.stivigala.wolt.dbo.meal.Meal;
@@ -22,7 +23,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 @Service
 public class ManagerService {
@@ -116,6 +116,7 @@ public class ManagerService {
     public void assignCourierToDelivery(HttpServletRequest request) {
         deliveryRepository.findById(Integer.parseInt(request.getParameter("deliveryId"))).ifPresent(delivery -> {
             delivery.setCourier(woltUserRepository.findById(request.getParameter("courierUserName")).orElse(null));
+            delivery.setStatus(DeliveryStatus.ASSIGNED);
             deliveryRepository.save(delivery);
         });
     }
