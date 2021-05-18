@@ -18,7 +18,7 @@ public class Meal {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    private String time;
+    private Integer time;
 
     @ManyToOne
     @JoinColumn(name="restaurant_id", nullable=false)
