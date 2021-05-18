@@ -87,7 +87,7 @@ public class ManagerService {
     public void addNewMeal(HttpServletRequest request) {
         mealRepository.save(new Meal(
                 null,
-                request.getParameter("time"),
+                Integer.parseInt(request.getParameter("time")),
                 restaurantRepository.findById(Integer.parseInt(request.getParameter("restaurantId"))).orElse(null),
                 null,
                 request.getParameter("menu"),

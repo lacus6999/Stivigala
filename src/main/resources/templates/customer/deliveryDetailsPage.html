@@ -33,9 +33,9 @@
         </div>
         <div th:text="'Final price: ' + ${#servletContext.getAttribute('price')}" class="meal-details">fg</div>
         <form th:method="post" th:action="@{/customer/placeOrder}">
-            Home delivery? (+1000ft)
-            <input type="checkbox" name="isHomeDelivery" value="true">
-            <input type="submit" th:value="Proceed">
+            Home delivery? (+5$)
+            <input type="checkbox" name="isHomeDelivery" value="true"><br>
+            <input type="submit" value="Place order">
         </form>
         <a th:href="'/customer/restaurant/' + ${#servletContext.getAttribute('meals').get(0).getRestaurant().getId()}"
            id="back-link">Back</a>

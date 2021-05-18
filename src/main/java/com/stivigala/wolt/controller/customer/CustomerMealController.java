@@ -46,15 +46,18 @@ public class CustomerMealController {
     }
 
     @PostMapping("/customer/placeOrder")
-    public String placeOrder(HttpServletRequest request, Boolean isHomeDelivery) throws Exception {
+    public String placeOrder(HttpServletRequest request, Model model, Boolean isHomeDelivery) throws Exception {
         ServletContext servletContext = request.getServletContext();
+        List<Meal> meals = (List<Meal>) servletContext.getAttribute("meals");
         if(isHomeDelivery != null)
-            customerService.order((List<Meal>) servletContext.getAttribute("meals"), (double) servletContext.getAttribute("price") + 1000, true);
+            customerService.order(meals, (double) servletContext.getAttribute("price") + 5, true);
         else
-            customerService.order((List<Meal>) servletContext.getAttribute("meals"), (double) servletContext.getAttribute("price"), false);
+            customerService.order(meals, (double) servletContext.getAttribute("price"), false);
         servletContext.removeAttribute("meals");
         servletContext.removeAttribute("price");
-        return "redirect:/customer/getMainCustomerSite";
+        model.addAttribute("time", meals.stream().map(Meal::getTime).mapToInt(Integer::intValue).max().orElse(-1));
+
+        return "/customer/successOrderPage";
     }
 
 }
