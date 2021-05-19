@@ -49,13 +49,14 @@ public class CustomerMealController {
     public String placeOrder(HttpServletRequest request, Model model, Boolean isHomeDelivery) throws Exception {
         ServletContext servletContext = request.getServletContext();
         List<Meal> meals = (List<Meal>) servletContext.getAttribute("meals");
+        Integer time = meals.stream().map(Meal::getTime).mapToInt(Integer::intValue).max().orElse(-1);
         if(isHomeDelivery != null)
-            customerService.order(meals, (double) servletContext.getAttribute("price") + 5, true);
+            customerService.order(meals, (double) servletContext.getAttribute("price") + 5, true, time);
         else
-            customerService.order(meals, (double) servletContext.getAttribute("price"), false);
+            customerService.order(meals, (double) servletContext.getAttribute("price"), false, time);
         servletContext.removeAttribute("meals");
         servletContext.removeAttribute("price");
-        model.addAttribute("time", meals.stream().map(Meal::getTime).mapToInt(Integer::intValue).max().orElse(-1));
+        model.addAttribute("time", time);
 
         return "/customer/successOrderPage";
     }

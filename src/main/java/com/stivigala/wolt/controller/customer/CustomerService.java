@@ -7,6 +7,7 @@ import com.stivigala.wolt.dbo.meal.Meal;
 import com.stivigala.wolt.dbo.meal.MealRepository;
 import com.stivigala.wolt.dbo.restaurant.Restaurant;
 import com.stivigala.wolt.dbo.restaurant.RestaurantRepository;
+import com.stivigala.wolt.dbo.user.WoltUser;
 import com.stivigala.wolt.service.user.WoltUserService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -48,7 +49,7 @@ public class CustomerService {
         return price;
     }
 
-    public void order(List<Meal> meals, double price, boolean isHomeDelivery) throws Exception {
+    public void order(List<Meal> meals, double price, boolean isHomeDelivery, Integer time) throws Exception {
         deliveryRepository.save(new Delivery(
                 null,
                 false,
@@ -59,8 +60,14 @@ public class CustomerService {
                 new Date(),
                 null,
                 price,
-                DeliveryStatus.NOT_ASSIGNED
+                DeliveryStatus.NOT_ASSIGNED,
+                time
         ));
 
+    }
+
+    public List<Delivery> getMyDeliveries() throws Exception {
+        WoltUser currentUser = woltUserService.getCurrentAuthenticatedUser();
+        return deliveryRepository.findAllByOrderedBy(currentUser);
     }
 }

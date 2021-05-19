@@ -48,6 +48,8 @@ public class Delivery {
     @Enumerated(EnumType.STRING)
     private DeliveryStatus status;
 
+    private Integer time;
+
 }
 
 

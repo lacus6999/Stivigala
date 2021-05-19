@@ -13,4 +13,6 @@ public interface DeliveryRepository extends CrudRepository<Delivery, Integer> {
     List<Delivery> findAllByCourier(WoltUser courier);
 
     List<Delivery> findAllByRestaurant(Restaurant restaurant);
+
+    List<Delivery> findAllByOrderedBy(WoltUser currentUser);
 }
